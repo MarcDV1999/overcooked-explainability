@@ -1,72 +1,105 @@
 # Overcooked Explainability
 
-Overcooked Explainability
+## Training Folder
 
+Com generar els models pickles
 
+Creem carpeta on anirà tot
 
-# Jugar amb Own trained Agents
-
-Per a poder jugar amb el nostre propi agent entrenat ( cal pujar el model en format pickle) amb l'interfície gràfica.
-
-[Github per pujar el model](https://github.com/HumanCompatibleAI/overcooked-demo)
-
-# Entrenar en nostre propi agent
-
-- [Github per entrenar el nostre propi agent](https://github.com/HumanCompatibleAI/human_aware_rl)
-- [Notebook NeurIPS](https://www.notion.so/Training-Overcooked-931ff3dc8feb484896409b3ff7e07c47#9b904261165445ccbc2b84d17edaa98a)
-
-En el README del github s'explica que després de instal·lar tot el necessari, es pot executar la comanda següent per a entrenar a un agent. (En principi s'instal·la tot bé, pero al executar els tests, fallen els del PPO. Per tant, aquesta linia no acaba funcionant.)
-
-```bash
-python3 ppo_rllib_client.py with seeds="[1, 2, 3]" lr=1e-3 layout_name=cramped_room num_training_iters=5 num_gpus=0 experiment_name="my_agent"
+```python
+mkdir Training
 ```
 
-Per tant, primer instal·lem tot el que ens demana:
+### Overcooked_ai
 
-```bash
-git clone --recursive https://github.com/HumanCompatibleAI/human_aware_rl.git
+```
+cd Training
+```
 
-conda create -n harl_rllib python=3.7
-conda activate harl_rllib
+Anem al github del Overcooked i seguim els passos:
+
+→ https://github.com/HumanCompatibleAI/overcooked_ai/tree/master
+
+```python
+conda create -n overcooked_ai python=3.7
+conda activate overcooked_ai
+
+git clone <https://github.com/HumanCompatibleAI/overcooked_ai.git>
+pip3 install -e overcooked_ai/
+
+cd overcooked_ai
+python3 testing/overcooked_test.py
+```
+
+### Human_aware_rl
+
+```
+cd Training
+```
+
+Anem a la branca neurips2019 (es la única que va) i seguim els passos:
+
+→ https://github.com/HumanCompatibleAI/human_aware_rl/tree/neurips2019
+
+```python
+git clone --single-branch --branch neurips2019 --recursive <https://github.com/HumanCompatibleAI/human_aware_rl.git>
+
+conda create -n harl2 python=3.7
+conda activate harl2
 
 cd human_aware_rl
 ./install.sh
 
-pip3 install tensorflow==2.0.2
-
-python3 -c "from ray import rllib"
-
-// Fallan els tests del PPO
-./run_tests.sh
-
-export RUN_ENV=local
-
-cd human_aware_rl/ppo
-```
-
-I finalment executem (Falla)
-
-```bash
-python3 ppo_rllib_client.py with seeds="[1, 2, 3]" lr=1e-3 layout_name=cramped_room num_training_iters=5 num_gpus=0 experiment_name="my_agent"
-```
-
-També he provat de instal·lar/executar una branca en concret, la branca [neurips2019](https://github.com/HumanCompatibleAI/human_aware_rl/tree/neurips2019). 
-
-```bash
-git clone --single-branch --branch neurips2019 --recursive https://github.com/HumanCompatibleAI/human_aware_rl.git
-
-conda create -n harl python=3.7
-
-conda activate harl
-
-cd human_aware_rl
-./install.sh
+conda install numpy
+conda install pandas
 
 pip3 install tensorflow==1.13.1
 conda install mpi4py
+pip3 install smmap
 
+cd human_aware_rl
 python3 run_tests.py
 ```
 
-Pero tampoc funciona
+En macOS potser surt un error tipo `Python must be installed as a framework.`
+
+Per solucionar-ho:
+
+→ [Telling Matplotlib to use a different backend](https://markhneedham.com/blog/2018/05/04/python-runtime-error-osx-matplotlib-not-installed-as-framework-mac/)
+
+Anar al fitxer `human_aware_rl/human_aware_rl/imitation/behavioural_cloning.py`
+
+I substituir la linia:
+
+```python
+import matplotlib.pyplot as plt
+```
+
+Per:
+
+```python
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+```
+
+## Resultats
+
+En principi a `human_aware_rl/human_aware_rl/data/` és troben els models pickle.
+
+
+
+---
+
+
+
+# Executar pickle a algún lloc
+
+Ara s'hauria de veure com es pot fer servir aquests pickles
+
+
+
+
+
+
 
