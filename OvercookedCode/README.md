@@ -54,9 +54,17 @@ En principi a `human_aware_rl/human_aware_rl/data/` és troben els models pickle
 
 
 
-# Executar pickle a algún lloc
+# Playing with trained agents
 
-Ara s'hauria de veure com es pot fer servir aquests pickles
+```bash
+cd human_aware_rl/human_aware_rl
+
+python3 overcooked_interactive.py -t bc -r simple_bc_test_seed4
+```
+
+⚠️ Important: Si fas click fora el terminal al executar el codi, ja no podràs seguir jugant.
+
+⚠️ Important 2: En el meu cas (mac), he hagut de desactivar el firewall a configuracio/privacitat i seguretat.
 
 
 
