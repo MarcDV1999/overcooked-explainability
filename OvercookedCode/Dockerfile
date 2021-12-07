@@ -1,11 +1,13 @@
 FROM nvidia/cuda:11.4.2-runtime-ubuntu20.04
 
-ENV TZ=Europe/Madrid \
-    DEBIAN_FRONTEND=noninteractive
+### Instalem Python, ...
 
 # ffmpeg Necesita que li passis el pais. Com ho fem?
 RUN apt-get update && apt-get install -y python3 python3-pip git python-is-python3 curl ffmpeg
 
+
+
+### Instalem Anaconda
 WORKDIR /tmp
 
 # No trobo manera de que no faci falta posar 'y'
@@ -19,6 +21,8 @@ RUN conda create -n harl python=3.7
 
 RUN conda activate hard
 
+
+### Instalem la resta
 RUN mkdir /code
 
 WORKDIR /code
