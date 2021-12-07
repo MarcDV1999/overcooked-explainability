@@ -10,9 +10,9 @@ cd human_aware_rl
 conda install numpy -y
 conda install pandas -y
 
-pip3 install tensorflow==1.13.1
+pip install tensorflow==1.13.1
 conda install mpi4py -y
-pip3 install smmap
+pip install smmap
 
 cd human_aware_rl
-python3 run_tests.py
+python run_tests.py
