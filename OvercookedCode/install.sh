@@ -5,14 +5,14 @@
 git clone --single-branch --branch neurips2019 --recursive https://github.com/HumanCompatibleAI/human_aware_rl.git
 
 cd human_aware_rl
-./install.sh
+conda run -n harl --no-capture-output bash install.sh
 
-conda install numpy -y
-conda install pandas -y
+conda install -n harl numpy -y
+conda install -n harl  pandas -y
 
-pip install tensorflow==1.13.1
-conda install mpi4py -y
+pip install tensorflow-gpu==1.13.1
+conda install -n harl mpi4py -y
 pip install smmap
 
 cd human_aware_rl
-python run_tests.py
+#conda run -n harl --no-capture-output python run_tests.py
