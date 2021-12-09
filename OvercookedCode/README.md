@@ -2,51 +2,35 @@
 
 ## Training Folder
 
+Per a entrenar els models executem les següents comandes
+
+Generem el entorn i instal·lem tot el necessary
+
 ```
 cd OvercookedCode
+
+docker build -t overcooked_img_bsc .   
 ```
 
-Anem a la branca neurips2019 (es la única que va) i seguim els passos:
+Entrenem els agents
 
-→ https://github.com/HumanCompatibleAI/human_aware_rl/tree/neurips2019
-
-```python
-conda create -n harl python=3.7
-conda activate harl
-
-./install.sh
-
-cd human_aware_rl
-python3 run_tests.py
+```bash
+docker run -it overcooked_img_bsc  
 ```
 
-En macOS potser surt un error tipo `Python must be installed as a framework.`
+al executar aquesta comanda, estem executant el següent
 
-Per solucionar-ho([Telling Matplotlib to use a different backend](https://markhneedham.com/blog/2018/05/04/python-runtime-error-osx-matplotlib-not-installed-as-framework-mac/))
-
-Anar al fitxer `human_aware_rl/human_aware_rl/imitation/behavioural_cloning.py`
-
-```
-open human_aware_rl/human_aware_rl/imitation/behavioural_cloning.py   
+```bash
+./experiments/all_experiments.sh
 ```
 
-I substituir la linia:
-
-```python
-import matplotlib.pyplot as plt
-```
-
-Per:
-
-```python
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-```
+Per tant, estem entrenant tots els agents que especifiquem al arxiu `all_experiments.sh`
 
 ## Resultats
 
-En principi a `human_aware_rl/human_aware_rl/data/` és troben els models pickle.
+Tots els resultats haurien d'estar a `human_aware_rl/human_aware_rl/data/`
+
+
 
 
 
