@@ -42,10 +42,10 @@ RUN conda run -n harl --no-capture-output bash install.sh
 WORKDIR /OvercookedCode/human_aware_rl/human_aware_rl
 
 
-RUN conda run -n harl --no-capture-output python run_tests.py
+#RUN conda run -n harl --no-capture-output python run_tests.py
 
 
-WORKDIR /OvercookedCode/human_aware_rl/human_aware_rl/experiments
+WORKDIR /OvercookedCode/human_aware_rl/human_aware_rl
 
 COPY all_experiments.sh .
 
