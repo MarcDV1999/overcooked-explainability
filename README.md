@@ -27,16 +27,15 @@ It is useful to setup a conda environment with Python 3.7 (virtualenv works too)
 # Optionally create conda environments
 conda create -n PantheonRL python=3.7
 conda activate PantheonRL
-
-# Clone and install PantheonRL
+```
+In this project, we use a modified version of the PantheonRL repository but if we wanted to use the original code of PantheonRL, we could install it with the following command lines:
+```bash
+# Clone and install PantheonRL. 
 git clone https://github.com/Stanford-ILIAD/PantheonRL.git
 cd PantheonRL
 pip install -e .
-```
 
-## 🧑‍🍳 Overcooked Installation
-
-```bash
+# Finally install Overcooked
 git submodule update --init --recursive
 pip3 install -e overcookedgym/human_aware_rl/overcooked_ai
 ```
@@ -51,8 +50,8 @@ In our case we will use an agent trained with a RL technique called [PPO (Proxim
 
 ```bash
 cd Code
-
-./train.sh
+# The parameter is the ID of the new agent
+bash train.sh
 ```
 
 Once the training had been finished, we will be able to see the following trained agents in [`models`](Code/PantheonRL/models) folder:
@@ -77,7 +76,8 @@ python3 trainer.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"s
 We can test our agents with the following command line:
 
 ```bash
-./test.sh
+# The parameter is the ID of the agents
+bash test.sh 0
 ```
 
 Once the testing had been finished, we will be able to see the mean episode reward and other useful information.
