@@ -1,0 +1,1 @@
+python3 PantheonRL/tester.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"simple"}' --ego-load PantheonRL/models/ego --alt-load PantheonRL/models/alt

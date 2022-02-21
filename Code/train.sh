@@ -1,0 +1,1 @@
+python3 PantheonRL/trainer.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"simple"}' --ego-save PantheonRL/models/ego --alt-save PantheonRL/models/alt
