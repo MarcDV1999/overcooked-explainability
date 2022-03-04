@@ -19,6 +19,8 @@ In this repo we will explain the behaviour of an agent trained to perform well o
 
 # ✅ Installation
 
+
+
 ## 🤖 PantheonRL Installation
 
 It is useful to setup a conda environment with Python 3.7 (virtualenv works too):
@@ -159,11 +161,13 @@ Currently, I think the first is the better one but I'm not pretty sure. Once we 
 
 - Train/Test
   - [`tester.py`](Code/PantheonRL/tester.py): Code for testing the Agents.
-  - [`trainer`](Code/PantheonRL/trainer.py): Code for training the Agents.
+  - [`trainer.py`](Code/PantheonRL/trainer.py): Code for training the Agents.
+  - [`bctrainer.py`](Code/PantheonRL/bctrainer.py): Code for training a BC Agent.
   - [`app.py`](Code/PantheonRL/overcookedgym/overcooked-flask/app.py): Executes a Flask App where we can see the agents playing in a GUI.
 - Examples
   - [`OvercookedAdaptPartnerInstructions.md`](Code/PantheonRL/overcookedgym/OvercookedAdaptPartnerInstructions.md): Training with terminal examples.
   - [`OvercookedFlaskWebAppInstructions.md`](Code/PantheonRL/overcookedgym/OvercookedFlaskWebAppInstructions.md): Web app examples.
+  - [`overcookedtraining.py`](Code/PantheonRL/examples/overcookedtraining.py): Example of how to train an Agent with Python.
   
 - Environment
   - [`overcooked_env.py`](Code/PantheonRL/overcookedgym/human_aware_rl/overcooked_ai/overcooked_ai_py/mdp/overcooked_env.py): Overcooked environment.
@@ -171,7 +175,7 @@ Currently, I think the first is the better one but I'm not pretty sure. Once we 
 - Policy Graph Extraction
   - [`arguments_utils.py`](Code/arguments_utils.py): Helps with the argument parsing work.
   - [`get_policy_graph.py`](Code/get_policy_graph.py): Extracts the Policy Graph of an Agent.
-  - [`overcooked.py`](Code/PantheonRL/overcookedgym/overcooked.py): Implements the `multi_step()` function.
+  - [`overcooked.py`](Code/PantheonRL/overcookedgym/overcooked.py): Implements the `OvercookedMultiEnv(SimultaneousEnv)` class.  In this class 
   
 
 
