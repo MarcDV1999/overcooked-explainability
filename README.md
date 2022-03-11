@@ -1,59 +1,51 @@
 <h1 align="center">
   <br>
-  <a href="https://aessestudiants.upc.edu"><img src="Images/README/logo-upc.png" alt="UPC Logo" width="500"></a>
-	<br>
-  <br>
-  Explaining Overcooked RL Agent 🧑‍🍳🤖
-  <br>
+  <a href="https://hpai.bsc.es/"><img src="Images/README/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
+  <br></br>
+    Explaining Overcooked RL Agent 🧑‍🍳🤖
+	</br>
 </h1>
+<h3 align="center">
+  Marc Domènech i Vila, Sergio Álvarez Napagao and Dmitry Gnatyshak
+</h3>
+<p align="center">
+  Artificial Intelligence Research and Development
+</p>
 
-In this repo we will explain the behaviour of an agent trained to perform well on overcooked using Reinforcement Learning.
+
+
+
+Explainable AI can be used to find ways to explain the way of reasoning of some AI algorithms that we see as a black box. This project aims to be the continuation of another[^1] where good results were achieved in a simple environment such as CartPole using a behavior graph extracted from RL-trained agents. The aim of this work is to see if an agent trained with these techniques can perform as well as an agent trained with RL with a more complex coordination environment such as Overcooked.
 
 
 
 # 🏗 Built with
 
+---
+
 - [PantheonRL](https://github.com/Stanford-ILIAD/PantheonRL)
+- [Overcooked AI](https://github.com/HumanCompatibleAI/overcooked_ai)
 
 
 
 # ✅ Installation
 
+---
 
+This repo has already all we need. ⚠️ It is **important to use the files included in this repo** because I have had to modify some files from PantheonRL in order to get the agent observation as we wanted. ⚠️
 
-## 🤖 PantheonRL Installation
-
-It is useful to setup a conda environment with Python 3.7 (virtualenv works too):
-
-```bash
-# Optionally create conda environments
-conda create -n PantheonRL python=3.7
-conda activate PantheonRL
-```
-In this project, we use a modified version of the PantheonRL repository but if we wanted to use the original code of PantheonRL, we could install it with the following command lines:
-```bash
-# Clone and install PantheonRL. 
-git clone https://github.com/Stanford-ILIAD/PantheonRL.git
-cd PantheonRL
-pip install -e .
-
-# Finally install Overcooked
-git submodule update --init --recursive
-pip3 install -e overcookedgym/human_aware_rl/overcooked_ai
-```
+# 🤖 Training our RL Agent
 
 ---
 
-
-
-# 🤖 Training our RL Overcooked Agent
-
-In our case we will use an agent trained with a RL technique called [PPO (Proximal Policy Optimization)](). To do so, we can execute the following command line.
+In our case we will use an agent trained with a RL technique called [PPO (Proximal Policy Optimization)](). To do so, we can execute one of the following command lines.
 
 ```bash
-cd Code
+cd Code/Training
+
+# Train an agent in layout: simple
 # The parameter is the ID of the new agent
-bash train.sh
+bash train.sh 0
 ```
 
 Once the training had been finished, we will be able to see the following trained agents in [`models`](Code/PantheonRL/models) folder:
@@ -66,20 +58,49 @@ If we want to personalize more your agent, you could use the following command l
 ```bash
 cd PantheonRL
 
-python3 trainer.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"simple"}' --ego-save models/ego --alt-save models/alt
+python3 trainer.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"simple"}' --ego-save models/ego0 --alt-save models/alt0
 ```
 
----
+In this case we are training our agent to perform well in a particular environment, `simple` in this case. I have developed two more scripts that trains an agent in multiple layouts and seeds. To use it, we can execute the following command line.
+
+```bash
+cd Code/Training
+
+# Train an agent in layouts: (simple unident_s random1 random0 random3) 
+# and for each layout uses seeds = range(1,10,1)
+# The parameter is the ID of the new agent
+bash train2.sh 0
+
+# Train an agent in seeds = range(1,10,1)
+# and for each seed uses layouts: (simple unident_s random1 random0 random3) 
+# The parameter is the ID of the new agent
+bash train3.sh 0
+```
+
+
+
+>## 👍 Trained Models
+>
+>When cloning the repository you will see that in [`models`](Code/PantheonRL/models) folder, there are already trained models. Here I attach a brief summary of each one.
+>
+>- [`ego51`](Code/PantheonRL/models/ego51.zip): Agent trained in `layouts = [simple, unident_s, random1, random0, random3]` and for each layout `seeds = range(1, 10, 1)`.
+>- [`ego10`](Code/PantheonRL/models/ego10.zip): Agent trained in `seeds = range(1, 10, 1)` and for each seed, `layouts = [simple, unident_s, random1, random0, random3]`.
+>
+>
 
 
 
 # 🧪 Test our RL Overcooked Agent
 
+---
+
 We can test our agents with the following command line:
 
 ```bash
-# The parameter is the ID of the agents
-bash test.sh 0
+cd Code/Testing
+# The first parameter is the ID of the agents
+# The second parameter is the layout
+bash test.sh 0 simple
 ```
 
 Once the testing had been finished, we will be able to see the mean episode reward and other useful information.
@@ -95,14 +116,17 @@ python3 tester.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"si
 Also we can test the agent in a web interface:
 
 ```bash
-python3 overcookedgym/overcooked-flask/app.py --modelpath_p0 models/ego1 --modelpath_p1 models/alt1 --layout_name simple
+cd Code/Testing
+# The first parameter is the ID of the agents
+# The second parameter is the layout
+bash test_GUI.sh 0 simple
 ```
-
----
 
 
 
 # 🕸 Building Policy Graph
+
+---
 
 Here we are using a method called Policy Graph. In this method what we are trying to do is to generate a Graph that represents de MDP of the agent. Since our environment is discrete, we won't have to discretize their states. The states is represented as follows:
 
@@ -143,52 +167,78 @@ This is a matrix where each position corresponds to a cell of the layout.
 
 Currently, I think the first is the better one but I'm not pretty sure. Once we decide which representation is the best, we had to ask ourselves, which predicates we will use to represent the nodes of the graph.
 
+## Possible Discretization
 
-
-
-
-
-
-
-
-
-
----
+...
 
 
 
 # 🏛 Repo Structure Overview
 
+---
+
+Here we can see a brief summary of the repo structure.
+
+## 🧑🏼‍💻 Code Folder
+
+- [`Training`](Code/Training): Code related with the training of the agents.
+  - [`train.sh`](Code/Training/train.sh): Script that trains an Ego and Alt agent using PPO in a particular layout.
+  - [`train2.sh`](Code/Training/train2.sh): Script that trains an Ego agent using PPO in multiple layouts and seeds.
+
+- [`Testing`](Code/Testing): Code related with the testing of the agents.
+  - [`test.sh`](Code/Testing/test.sh): Script that tests a trained Ego agent in a particular layout.
+  - [`test_GUI.sh`](Code/Testing/test_GUI.sh): Script that tests a trained Ego agent using GUI.
+
+- [`Explainability`](Code/Explainability): Code related with the agent explainability.
+  - [`get_policy_graph.py`](Code/Explainability/get_policy_graph.py): Extracts the Policy Graph of an Agent.
+  - [`PolicyGraph.py`](Code/Explainability/PolicyGraph.py): Class that saves and computes the Policy Graph.
+
+- [`Utils`](Code/Utils): Code related with useul tools.
+  - [`arguments_utils.py`](Code/Utils/arguments_utils.py): Code that helps with the argument parsing.
+  - [`utils.py`](Code/Utils/utils.py): Code with usefool tools.
+
+
+
+
+## 🦾 PantheonRL Folder
+
+This folder has a lot of files. Here I mention those files that I think are more interesting.
+
 - Train/Test
   - [`tester.py`](Code/PantheonRL/tester.py): Code for testing the Agents.
-  - [`trainer.py`](Code/PantheonRL/trainer.py): Code for training the Agents.
+  - [`trainer.py`](Code/PantheonRL/trainer.py): Code for training an Agents in a particular layout.
   - [`bctrainer.py`](Code/PantheonRL/bctrainer.py): Code for training a BC Agent.
   - [`app.py`](Code/PantheonRL/overcookedgym/overcooked-flask/app.py): Executes a Flask App where we can see the agents playing in a GUI.
 - Examples
   - [`OvercookedAdaptPartnerInstructions.md`](Code/PantheonRL/overcookedgym/OvercookedAdaptPartnerInstructions.md): Training with terminal examples.
   - [`OvercookedFlaskWebAppInstructions.md`](Code/PantheonRL/overcookedgym/OvercookedFlaskWebAppInstructions.md): Web app examples.
   - [`overcookedtraining.py`](Code/PantheonRL/examples/overcookedtraining.py): Example of how to train an Agent with Python.
-  
 - Environment
   - [`overcooked_env.py`](Code/PantheonRL/overcookedgym/human_aware_rl/overcooked_ai/overcooked_ai_py/mdp/overcooked_env.py): Overcooked environment.
-
 - Policy Graph Extraction
-  - [`arguments_utils.py`](Code/arguments_utils.py): Helps with the argument parsing work.
-  - [`get_policy_graph.py`](Code/get_policy_graph.py): Extracts the Policy Graph of an Agent.
-  - [`overcooked.py`](Code/PantheonRL/overcookedgym/overcooked.py): Implements the `OvercookedMultiEnv(SimultaneousEnv)` class.  In this class 
-  
+  - [`overcooked.py`](Code/PantheonRL/overcookedgym/overcooked.py): Implements the `OvercookedMultiEnv(SimultaneousEnv)` class.  I have modified the `multi_step()` in order to also return the observation with the shape we want.
 
 
 
 # 📘 Research Papers
 
+---
+
+- [^1]: [A. Climent, D. Gnatyshak, and S. Alvarez-Napagao."Applying and verifying an explainability method based on policy graphs in the context of reinforcement learning" 7 2021.](https://ebooks.iospress.nl/volumearticle/57744)
+
 - Carroll, Micah, Rohin Shah, Mark K. Ho, Thomas L. Griffiths, Sanjit A. Seshia, Pieter Abbeel, and Anca Dragan. ["On the utility of learning about humans for human-ai coordination."](https://arxiv.org/abs/1910.05789) NeurIPS 2019.
+
+- [^2]: [Carroll, Micah, Rohin Shah, Mark K. Ho, Thomas L. Griffiths, Sanjit A. Seshia, Pieter Abbeel, and Anca Dragan. "On the utility of learning about humans for human-ai coordination." NeurIPS 2019.](https://arxiv.org/abs/1910.05789)
+
+  
 
 
 
 
 
 # 🔬Contributing
+
+---
 
 1. Fork the project (<https://github.com/yourname/yourproject/fork>)
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -198,20 +248,38 @@ Currently, I think the first is the better one but I'm not pretty sure. Once we 
 
 
 
-# ➕ More Information (Optional)
+# ➕ More Information
+
+---
 
 For more information about the project, see the following document: 
 
-- [Paper]()
+- [Paper/TFG]()
 
 
 
 # 🙋‍♂️ Authors
 
-  - **Marc Domènech**  - [MarcDV1999](https://github.com/MarcDV1999)
+---
+
+### Thesis student
+
+- **Marc Domènech**  - [MarcDV1999](https://github.com/MarcDV1999)
+
+### Thesis supervisor
+
+- **Sergio Álvarez Napagao** - ([salvarez@cs.upc.edu](mailto:salvarez@cs.upc.edu))
+
+### Co-supervisor
+
+- **Dmitry Gnatyshak**
+
+
 
 
 
 # 🎓 License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/MarcDV1999/Traffic-Signals-Predictor/blob/main/LICENSE) file for details
+---
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details

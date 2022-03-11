@@ -1,35 +1,23 @@
-import time
 from argparse import Namespace
 
-from PantheonRL.trainer import generate_env, LAYOUT_LIST
-from PantheonRL.tester import generate_agent
+from Code.PantheonRL.trainer import generate_env, LAYOUT_LIST
+from Code.PantheonRL.tester import generate_agent
 from time import sleep
 import numpy as np
+from Code.PantheonRL.overcookedgym.human_aware_rl.overcooked_ai.overcooked_ai_py.mdp.overcooked_mdp import OvercookedState
 
-def action_num_to_char(action_num):
-    if action_num == 0:
-        return "↑"
-    elif action_num == 1:
-        return '↓'
-    elif action_num == 2:
-        return '→'
-    elif action_num == 3:
-        return '←'
-    elif action_num == 4:
-        return 'stay'
-    elif action_num == 5:
-        return 'interact'
 
 # Class that computes the Policy Graph of an ego agent
-class Policy_Graph():
+class PolicyGraph():
+
+    ## ENVIRONMENT PARAMETERS
+    ego = None
+    alt = None
+    env = None
+    altenv = None
 
     def __init__(self, ego_file, alt_file, total_episodes, seeds):
 
-        ## ENVIRONMENT PARAMETERS
-        self.ego = None
-        self.alt = None
-        self.env = None
-        self.altenv = None
         self.seeds = seeds
 
         self.params = Namespace(
@@ -43,7 +31,7 @@ class Policy_Graph():
             env='OvercookedMultiEnv-v0',
             env_config={'layout_name': 'simple'},
             framestack=1,
-            record='traj.txt',
+            record=None,
             render=False,
             seed=None,
             total_episodes=total_episodes)
@@ -51,20 +39,19 @@ class Policy_Graph():
         ## POLICY GRAPH
         self.pg = None
 
-        # Generates the environment
+        # Generates the environment, agents...
         self.generate_game()
 
         # Start to play the game
         self.play()
 
-    ################## RUNNING EGO AGENT ##################
-    # Generates a new Game
-    # Generates new agents and env with the current 'params'
+    ################## RUNNING AGENTS AND ENV ##################
+    # Generates a new Game (Agents, Env, ...) using self.params
     def generate_game(self):
         # Creates the environment with the given configuration
-        #print(f"Arguments: {self.params}")
+        print(f"Arguments: {self.params}")
         self.env, self.altenv = generate_env(self.params)
-        #print(f"Environment: {self.env}; Partner env: {self.altenv}\n")
+        print(f"Environment: {self.env}; Partner env: {self.altenv}\n")
 
         # Creates the EGO Agent with the given configuration
         self.ego = generate_agent(self.env, self.params.ego, self.params.ego_config, self.params.ego_load)
@@ -80,10 +67,11 @@ class Policy_Graph():
         #print('Env:', self.env.env.base_env, self.env, self.env.env.observation_space)
 
     # Play an Epoch in current env in order to feed the PG
+    # An epoch it is formed by a number of episodes
     def play_epoch(self, num_episodes, render=False):
 
         rewards = []
-        for game in range(num_episodes):
+        for episode in range(num_episodes):
             obs = self.env.reset()
             done = False
             reward = 0
@@ -91,18 +79,20 @@ class Policy_Graph():
             while not done:
                 # We get the action
                 action = self.ego.get_action(obs, False)
-                # Run step
+
+                # Run step and save the obs
                 obs, newreward, done, info = self.env.step(action)
-                state_str = info['Obs_str']
-                #print('Obs String:', state_str, type(state_str))
-                #print('Obs String:', obs, type(obs))
-                #print(self.env.env.base_env.mdp.state_string(state_str))
+                obs_state = info['Obs_str']
+                obs_map = self.env.env.base_env.mdp.state_string(obs_state)
 
                 # Update global reward
                 reward += newreward
 
                 # Update PG with current obs and action
-                self.update_pg(obs, action)
+                # obs: Observation featurized
+                # obs_state: Normal Observation
+                # obs_map: Map with the state of each pos
+                self.update_pg(obs_state, action)
 
                 if render:
                     self.env.render()
@@ -114,17 +104,24 @@ class Policy_Graph():
         print(f"Average Reward: {sum(rewards) / num_episodes}")
         print(f"Standard Deviation: {np.std(rewards)}")
 
-    # Runs the ego agent multiple epochs in different layouts and seeds
+    # Runs the (ego,alt) agent multiple epochs (Games) in different layouts and seeds
+    # FIXME: El agent nomes te bons resultats en el entorn en el que ha estat entrenat
     def play(self):
-        num_iters = len(LAYOUT_LIST) + len(self.seeds)
+        #layouts = LAYOUT_LIST
+        layouts = ['simple']
+
+        num_iters = len(layouts) * len(self.seeds)
         actual_iter = 1
-        for layout in LAYOUT_LIST:
+        for layout in layouts:
             for seed in self.seeds:
+
                 #start_time = time.time()
                 self.params.env_config['layout_name'] = layout
                 self.params.seed = seed
+
                 # Generates the new game
                 self.generate_game()
+
                 # Play an epoch
                 self.play_epoch(self.params.total_episodes, self.params.render)
 
@@ -137,26 +134,34 @@ class Policy_Graph():
 
 
     ################## POLICY GRAPH ##################
-    # Updates the PG
-    def update_pg(self, obs, act):
+    # TODO: Updates the PG
+    def update_pg(self, obs: OvercookedState, act):
         # Aqui haurem de discretitzar les observacions
-        pass
+        #print('Obs:', obs, 'Act:', act)
 
+        # Position and Orientation of each Player
+        (pos1, or1), (pos2, or2) = obs.players_pos_and_or
 
+        # Unowned objects. The type is defaultdict{(obj_name: ObjState)}, example {'onion': [onion@(6, 1)]}
+        unowned_objects = obs.unowned_objects_by_type
+        #print(unowned_objects)
 
+        # Owned objects. The type is defaultdict{(obj_name: ObjState)}, example {'onion': [onion@(6, 1)]}
+        player_objects = obs.player_objects_by_type
+        #print(player_objects)
 
+        # Owned and Unowned objects
+        all_objects_dic, all_objects_list = obs.all_objects_by_type, obs.all_objects_list
+        #print(all_objects_dic, all_objects_list)
 
-if __name__ == '__main__':
+        # Current Order
+        curr_order = obs.curr_order
+        #print(curr_order)
 
-    ################## PARAMETERS ##################
-    ego_file = 'PantheonRL/models/ego1'
-    alt_file = 'PantheonRL/models/alt1'
-    total_episodes = 5
-    seeds = range(1,10,2)
+        # Next Order
+        next_order = obs.next_order
+        #print(next_order)
 
-    ################## COMPUTING PG ##################
-    # Computes the PG of the given ego agent
-    pg = Policy_Graph(ego_file, alt_file, total_episodes, seeds)
-
-
-
+        # Num orders remaining
+        num_ord_rem = obs.num_orders_remaining
+        #print(num_ord_rem)

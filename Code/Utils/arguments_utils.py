@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from PantheonRL.trainer import (generate_env, gen_fixed, gen_default, EnvException,
+from Code.PantheonRL.trainer import (generate_env, gen_fixed, gen_default, EnvException,
                      ENV_LIST, ADAP_TYPES, LAYOUT_LIST)
 
 EGO_LIST = ['PPO', 'ModularAlgorithm', 'BC'] + ADAP_TYPES
