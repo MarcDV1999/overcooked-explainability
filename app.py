@@ -1,24 +1,27 @@
 # Extracts the Policy Graph of a given agent
 import networkx as nx
+import sys
+sys.path.append("./Code")
+print(sys.path)
 
 from Code.Explainability.Discretizers.Discretizer_1 import Discretizer_1
 from Code.Explainability.PolicyGraph import PolicyGraph
-import sys
 
-sys.path.append("../Code")
+
+
 
 if __name__ == '__main__':
 
     ################## PARAMETERS ##################
     agent_id = '_simple'
-    ego_file = 'PantheonRL/models/ego{}'.format(agent_id)
+    ego_file = 'Code/PantheonRL/models/ego{}'.format(agent_id)
     # FIXME: Igual aqui no hauriem de passar-li un alt, sino fer un load del mateix Ego. I aixi tenir dos Ego PPO
-    alt_file = 'PantheonRL/models/alt{}'.format(agent_id)
+    alt_file = 'Code/PantheonRL/models/alt{}'.format(agent_id)
 
     # Num of games and which seeds
     total_episodes = 1
     #seeds = range(1,10,2)
-    seeds = range(1, 40, 1)
+    seeds = range(1, 2, 1)
 
     ################## COMPUTING PG ##################
     # Create the PG object
