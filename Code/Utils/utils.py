@@ -11,6 +11,6 @@ def action_num_to_char(action_num):
     elif action_num == 3:
         return '←'
     elif action_num == 4:
-        return 'stay'
+        return 's'
     elif action_num == 5:
-        return 'interact'
+        return 'x'
