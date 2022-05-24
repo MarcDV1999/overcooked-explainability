@@ -6,7 +6,7 @@ Usage: $0 ID_AGENT
 ID_AGENT:       ID of the agent (To easely save it)
 LAYOUT_NAME:    LAYOUT_NAME where the agent will play (simple, unident_s, random0, random1 or random3)
 
-Example: $0 0 simple
+Example: $0 _simple simple
 EOF
 # If we have all the parameters, we can start the training
 else

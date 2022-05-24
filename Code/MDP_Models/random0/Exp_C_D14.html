@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1411.2px;
+            height: 702.0px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "label": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "shape": "dot", "size": 48}, {"id": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "label": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "shape": "dot", "size": 30}, {"id": "O-O-Of-Of-S-S-S-S-B-T-I-W", "label": "O-O-Of-Of-S-S-S-S-B-T-I-W", "shape": "dot", "size": 30}, {"id": "O-O-Of-Of-S-S-S-S-B-I-R-W", "label": "O-O-Of-Of-S-S-S-S-B-I-R-W", "shape": "dot", "size": 30}, {"id": "*-O-Of-Of-I-S-S-S-B-T-R-W", "label": "*-O-Of-Of-I-S-S-S-B-T-R-W", "shape": "dot", "size": 30}, {"id": "O-*-Of-Of-S-S-S-S-B-I-R-W", "label": "O-*-Of-Of-S-S-S-S-B-I-R-W", "shape": "dot", "size": 30}, {"id": "O-*-Of-Of-B-S-S-S-B-T-R-W", "label": "O-*-Of-Of-B-S-S-S-B-T-R-W", "shape": "dot", "size": 30}]);
+        edges = new vis.DataSet([{"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "to": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.013109596224436287}, {"action": 4, "arrows": "to", "color": "525E75", "from": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "to": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.012585212375458836}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "to": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.00013109596224436288}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.015731515469323543}, {"action": 4, "arrows": "to", "color": "525E75", "from": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.005637126376507604}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.0003932878867330886}, {"action": 4, "arrows": "to", "color": "525E75", "from": "O-O-Of-Of-S-S-S-S-B-T-I-W", "to": "O-O-Of-Of-S-S-S-S-B-T-I-W", "weight": 0.06593406593406594}, {"action": 2, "arrows": "to", "color": "6BCB77", "from": "O-O-Of-Of-S-S-S-S-B-T-I-W", "to": "O-O-Of-Of-S-S-S-S-B-T-I-W", "weight": 0.005494505494505495}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "O-O-Of-Of-S-S-S-S-B-T-I-W", "to": "O-O-Of-Of-S-S-S-S-B-I-R-W", "weight": 0.005494505494505495}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.007172131147540984}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.0010245901639344263}, {"action": 4, "arrows": "to", "color": "525E75", "from": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.004098360655737705}, {"action": 3, "arrows": "to", "color": "FFD93D", "from": "*-O-Of-Of-I-S-S-S-B-T-R-W", "to": "*-O-Of-Of-I-S-S-S-B-T-R-W", "weight": 0.1511627906976744}, {"action": 4, "arrows": "to", "color": "525E75", "from": "*-O-Of-Of-I-S-S-S-B-T-R-W", "to": "*-O-Of-Of-I-S-S-S-B-T-R-W", "weight": 0.19102990033222592}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "O-O-Of-Of-S-S-S-S-B-I-R-W", "to": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.8817722128581749}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "O-O-Of-Of-S-S-S-S-B-I-R-W", "to": "*-*-Wa-Of-L-S-S-S-B-I-R-W", "weight": 0.05441849265591139}, {"action": 4, "arrows": "to", "color": "525E75", "from": "O-O-Of-Of-S-S-S-S-B-I-R-W", "to": "O-O-Of-Of-S-S-S-S-B-I-R-W", "weight": 0.03635925836744522}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "O-O-Of-Of-S-S-S-S-B-I-R-W", "to": "O-O-Of-Of-S-S-S-S-B-I-R-W", "weight": 0.022152660727185167}, {"action": 2, "arrows": "to", "color": "6BCB77", "from": "O-O-Of-Of-S-S-S-S-B-I-R-W", "to": "O-O-Of-Of-S-S-S-S-B-T-I-W", "weight": 0.000963159162051529}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "O-*-Of-Of-S-S-S-S-B-I-R-W", "to": "*-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.3247863247863248}, {"action": 4, "arrows": "to", "color": "525E75", "from": "O-*-Of-Of-S-S-S-S-B-I-R-W", "to": "O-O-Of-Of-S-S-S-S-B-I-R-W", "weight": 0.008547008547008548}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {"nodes": {"color": {"highlight": {"border": "rgba(134,41,233,1)", "background": "rgba(198,171,255,1)"}}, "font": {"size": 25, "strokeWidth": 13}}, "edges": {"arrowStrikethrough": false, "color": {"inherit": true, "highlight": {"border": "rgba(57,70,233,1)"}}, "selfReferenceSize": 50, "smooth": {"forceDirection": "none"}}, "interaction": {"hover": false, "multiselect": true}, "physics": {"barnesHut": {"damping": 1, "avoidOverlap": 0.9, "gravitationalConstant": -23000}, "minVelocity": 0.75}};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

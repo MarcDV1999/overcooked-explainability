@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://hpai.bsc.es/"><img src="Images/README/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
+  <a href="https://hpai.bsc.es/"><img src="Images/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
   <br></br>
     Explaining Overcooked RL Agent 🧑‍🍳🤖
 	</br>
@@ -9,22 +9,18 @@
   Marc Domènech i Vila, Sergio Álvarez Napagao and Dmitry Gnatyshak
 </h3>
 <p align="center">
-  Artificial Intelligence Research and Development
+  High Performance Artificial Intelligence research group
 </p>
 
 
 
+Even though with each passing day the AI gains popularity thanks to its successful application in many domains, the truth is that it also receives a lot of criticism. In particular, people ask themselves if its decisions are well-informed and if they can rely on its decisions. The answers to these questions become crucial in cooperative environments to be understandable to humans and can cooperate with them. In this work, we will apply an approach for explainability based on the creation of a Policy Graph (PG) that represents the agent’s behaviour. This work has two main contributions: the first is a way to measure the similarity between the explanations and the agent’s behaviour, by building another agent that follows a policy based on the explainability method and comparing the behaviour of both agents. The second manages to explain an RL agent in a multi-agent cooperative environment.
 
-Explainable AI can be used to find ways to explain the way of reasoning of some AI algorithms that we see as a black box. This project aims to be the continuation of another[^1] where good results were achieved in a simple environment such as CartPole using a behavior graph extracted from RL-trained agents. The aim of this work is to see if an agent trained with these techniques can perform as well as an agent trained with RL with a more complex coordination environment such as Overcooked.
+# :shallow_pan_of_food: Introduction
 
+In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/PantheonRL) package for training and testing an agent in the [Overcooked-AI](https://github.com/HumanCompatibleAI/overcooked_ai) environment. Overcooked-AI is a benchmark environment for fully cooperative human-AI task performance, based on the wildly popular video game [Overcooked](http://www.ghosttowngames.com/overcooked). The goal of the game is to deliver soups as fast as possible. Each soup requires placing up to 3 ingredients in a pot, waiting for the soup to cook, and then having an agent pick up the soup and delivering it. The agents should split up tasks on the fly and coordinate effectively in order to achieve high reward. The environment has the following reward function: 3 points if the agent places an onion in a pot or if takes a dish, and 5 points if it takes a soup. Here in this work, we have worked with five different layouts: *simple*, *unident\_s*, *random0*, *random1*, *random3*.
 
-
-# 🏗 Built with
-
----
-
-- [PantheonRL](https://github.com/Stanford-ILIAD/PantheonRL)
-- [Overcooked AI](https://github.com/HumanCompatibleAI/overcooked_ai)
+![layouts](/Users/marcdomenech/Desktop/UPC/GEI/Assignatures/TFG/GitLab/overcooked-explainability/Images/layouts.gif)
 
 
 
@@ -42,12 +38,6 @@ pip install networkx==2.6.3
 
 
 
-# :shallow_pan_of_food: Introduction
-
-Overcooked-AI is a benchmark environment for fully cooperative human-AI task performance, based on the wildly popular video game [Overcooked](http://www.ghosttowngames.com/overcooked/).
-
-The goal of the game is to deliver soups as fast as possible. Each soup requires placing up to 3 ingredients in a pot, waiting for the soup to cook, and then having an agent pick up the soup and delivering it. The agents should split up tasks on the fly and coordinate effectively in order to achieve high reward.
-
 # 🤖 Training our RL Agent
 
 ---
@@ -57,9 +47,8 @@ In our case we will use an agent trained with a RL technique called [PPO (Proxim
 ```bash
 cd Code/Training
 
-# Train an agent in layout: simple
-# The parameter is the ID of the new agent
-bash train.sh 0
+# Train an agent with ID=0 in layout simple for 1000000 timesteps
+bash train.sh 0 simple 1000000
 ```
 
 Once the training had been finished, we will be able to see the following trained agents in [`models`](Code/PantheonRL/models) folder:
@@ -75,35 +64,6 @@ cd PantheonRL
 python3 trainer.py OvercookedMultiEnv-v0 PPO PPO --env-config '{"layout_name":"simple"}' --ego-save models/ego0 --alt-save models/alt0
 ```
 
-In this case we are training our agent to perform well in a particular environment, `simple` in this case. I have developed two more scripts that trains an agent in multiple layouts and seeds. To use it, we can execute the following command line.
-
-```bash
-cd Code/Training
-
-# Train an agent in layouts: (simple unident_s random1 random0 random3) 
-# and for each layout uses seeds = range(1,10,1)
-# The parameter is the ID of the new agent
-bash train2.sh 0
-
-# Train an agent in seeds = range(1,10,1)
-# and for each seed uses layouts: (simple unident_s random1 random0 random3) 
-# The parameter is the ID of the new agent
-bash train3.sh 0
-```
-
-
-
->## 👍 Trained Models
->
->When cloning the repository you will see that in [`models`](Code/PantheonRL/models) folder, there are already trained models. Here I attach a brief summary of each one.
->
->- ❌ [`ego51`](Code/PantheonRL/models/ego51.zip): Agent trained in `layouts = [simple, unident_s, random1, random0, random3]` and for each layout `seeds = range(1, 10, 1)`.
->- 🔜 [`ego10`](Code/PantheonRL/models/ego10.zip): Agent trained in `seeds = range(1, 10, 1)` and for each seed, `layouts = [simple, unident_s, random1, random0, random3]`.
->- ✅ [`ego_simple`](Code/PantheonRL/models/ego_simple.zip): Agent trained to perform well in `simple` layout.
->
-
-After this experimentation we saw that training an agent with the aim of performing well on multiple layouts, was not a good approach (we have to figure out an explanation). For this reason, we decided to train an agent that performed well in a single layout, in our case the `simple` layout.
-
 # 🧪 Test our RL Agent
 
 ---
@@ -112,7 +72,7 @@ We can test our agents with the following command line:
 
 ```bash
 cd Code/Testing
-# The first parameter is the ID of the agents
+# The first parameter is the ID of the agent
 # The second parameter is the layout
 bash test.sh 0 simple
 ```
@@ -138,90 +98,17 @@ bash test_GUI.sh 0 simple
 
 
 
-## Tested models
-
-| Model      | Description | Mean Episode Reward | Test Result | Seeds         | STD    |
-| ---------- | ----------- | ------------------- | ----------- | ------------- | ------ |
-| ego_simple |             | 388.14              | ❌           | range(1,10,2) | 15.817 |
-|            |             |                     |             |               |        |
-|            |             |                     |             |               |        |
-
-
-
-# 🕸 Building Policy Graph
-
----
-
-Here we are using a method called Policy Graph. In this method what we are trying to do is to generate a Graph that represents de MDP of the agent. Since our environment is discrete, we won't have to discretize their states. The states is represented as follows:
-
-```json
-State{
-	Players: ((2, 1) facing (0, -1) holding None, 
-						(3, 2) facing (0, 1) holding soup@(3, 2) with state ('onion', 3, 20)),
-	Objects: [soup@(2, 0) with state ('onion', 1, 0)], 
-	Order list: None
-}
-```
-
-This is a [`overcooked_ai_py.mdp.overcooked_mdp.OvercookedState`](Code/PantheonRL/overcookedgym/human_aware_rl/overcooked_ai/overcooked_ai_py/mdp/overcooked_mdp.py). 
-
-On the other hand, in the original code, they featurize this state into somtehing that has the following shape:
-
-```python
-State = [ 0.  1.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0. -1. -2.  0.
-  0. -2.  1.  0.  0.  0.  1.  0.  1.  1.  0.  1.  0.  0.  0.  0.  0.  1.
- -2.  0.  0.  0.  0.  0.  0.  0.  0. -1.  0.  0.  0.  0.  0.  0.  1.  2.
-  1.  0.  0.  0. -1. -1.  3.  2.]
-```
-
-This is a `numpy.ndarray` of length 62. Currently, I don't know what it means 😅.
-
-We have a third option that is represent the state like this:
-
-```bash
-X Xoø18X X 
-O   ↑d  O 
-Xd    ↓oX 
-X D X S X 
-```
-
-This is a matrix where each position corresponds to a cell of the layout.
-
-
-
-Currently, I think the first is the better one but I'm not pretty sure. Once we decide which representation is the best, we had to ask ourselves, which predicates we will use to represent the nodes of the graph.
-
-## State Representation
-
-```bash
-X X P X X 
-O   ←1  O 
-X ↓0    X 
-X D X S X 
-```
-
-
-
-## Possible Discretization
-
-Finally we decided to use the first representation of the state.
-
-```json
-State{
-	Players: ((2, 1) facing (0, -1) holding None, 
-						(3, 2) facing (0, 1) holding soup@(3, 2) with state ('onion', 3, 20)),
-	Objects: [soup@(2, 0) with state ('onion', 1, 0)], 
-	Order list: None
-}
-```
-
-In order to discretisize the observation, we probably would have to use the following info:
-
-- Objects that holds the agent.
-- Direction and Distance to the other objects. (Needed since the PG would have to predict an action given an state)
-- Can we know if the oven is full? and how much is the remaining time?
-
-
+>## 👍 Trained Models
+>
+>When cloning the repository you will see that in [`models`](Code/PantheonRL/models) folder, there are already trained models. Here I attach a brief summary of each one.
+>
+>| Layout    | Mean Episode Reward | Standard Deviation |
+>| --------- | ------------------- | ------------------ |
+>| simple    | 387.87              | 25.33              |
+>| unident_s | 757.71              | 53.03              |
+>| random0   | 395.01              | 54.43              |
+>| random1   | 266.01              | 48.11              |
+>| random3   | 62.5                | 5.00               |
 
 # 🏛 Repo Structure Overview
 
@@ -233,22 +120,18 @@ Here we can see a brief summary of the repo structure.
 
 - [`Training`](Code/Training): Code related with the training of the agents.
   - [`train.sh`](Code/Training/train.sh): Script that trains an Ego and Alt agent using PPO in a particular layout.
-  - [`train2.sh`](Code/Training/train2.sh): Script that trains an Ego agent using PPO in multiple layouts and seeds.
-  - [`train3.sh`](Code/Training/train3.sh): Script that trains an Ego agent using PPO in multiple seeds and layouts.
-  
 - [`Testing`](Code/Testing): Code related with the testing of the agents.
   - [`test.sh`](Code/Testing/test.sh): Script that tests a trained Ego agent in a particular layout.
   - [`test_GUI.sh`](Code/Testing/test_GUI.sh): Script that tests a trained Ego agent using GUI.
-
 - [`Explainability`](Code/Explainability): Code related with the agent explainability.
-  - [`get_policy_graph.py`](Code/app.py): Extracts the Policy Graph of an Agent.
-  - [`PolicyGraph.py`](Code/Explainability/PolicyGraph.py): Class that saves and computes the Policy Graph.
-
+  - [`PolicyGraph.py`](Code/Explainability/PolicyGraph.py): Abstract class with all the general computations of the Policy Graph algorithm.
+  - [`PartialPolicyGraph.py`](Code/Explainability/PartialPolicyGraph.py): Class that implements Partial Policy Graph algorithm.
+  - [`CompletePolicyGraph.py`](Code/Explainability/CompletePolicyGraph.py): Class that implements Complete Policy Graph algorithm.
+  - [`Discretizers`](Code/Explainability/Discretizers): All the discretizer implementations.
 - [`Utils`](Code/Utils): Code related with useul tools.
-  - [`arguments_utils.py`](Code/Utils/arguments_utils.py): Code that helps with the argument parsing.
   - [`utils.py`](Code/Utils/utils.py): Code with usefool tools.
-
-
+- [`Experiment.py`](Code/Experiment.py): Code to reproduce different experiements.
+- [`join_csv_results.py`](Code/join_csv_results.py): Script that joins 2 .csv files into one csv. Used to join Partial and Complete agent results.
 
 
 ## 🦾 PantheonRL Folder
@@ -278,22 +161,6 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 - **Episode:** It refers to a Game. One game consists in taking 400 actions, this means that an agent will take 400 actions over the game.
 - **Epoch:** It refers to a set of Episodes. 
-
-# 📘 Research Papers
-
----
-
-- [^1]: [A. Climent, D. Gnatyshak, and S. Alvarez-Napagao."Applying and verifying an explainability method based on policy graphs in the context of reinforcement learning" 7 2021.](https://ebooks.iospress.nl/volumearticle/57744)
-
-- Carroll, Micah, Rohin Shah, Mark K. Ho, Thomas L. Griffiths, Sanjit A. Seshia, Pieter Abbeel, and Anca Dragan. ["On the utility of learning about humans for human-ai coordination."](https://arxiv.org/abs/1910.05789) NeurIPS 2019.
-
-- [^2]: [Carroll, Micah, Rohin Shah, Mark K. Ho, Thomas L. Griffiths, Sanjit A. Seshia, Pieter Abbeel, and Anca Dragan. "On the utility of learning about humans for human-ai coordination." NeurIPS 2019.](https://arxiv.org/abs/1910.05789)
-
-  
-
-
-
-
 
 # 🔬Contributing
 
@@ -327,15 +194,11 @@ For more information about the project, see the following document:
 
 ### Thesis supervisor
 
-- **Sergio Álvarez Napagao** - ([salvarez@cs.upc.edu](mailto:salvarez@cs.upc.edu))
+- **Sergio Álvarez Napagao** - ([Sergio Álvarez](mailto:sergio.alvarez@bsc.es))
 
-### Co-supervisor
+### Thesis co-supervisor
 
-- **Dmitry Gnatyshak**
-
-
-
-
+- **Dmitry Gnatyshak** - ([Dmitry Gnatyshak](mailto:dmitry.gnatyshak@bsc.es))
 
 # 🎓 License
 
