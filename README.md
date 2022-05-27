@@ -2,7 +2,7 @@
   <br>
   <a href="https://hpai.bsc.es/"><img src="Images/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
   <br></br>
-    Explaining Overcooked RL Agent 🧑‍🍳🤖
+    Testing Reinforcement Learning Explainability Methods in a Multi-agent Cooperative Environment 🧑‍🍳🤖
 	</br>
 </h1>
 <h3 align="center">
