@@ -5,12 +5,13 @@
     Testing Reinforcement Learning Explainability Methods in a Multi-agent Cooperative Environment 🧑‍🍳🤖
 	</br>
 </h1>
-<h3 align="center">
+<h2 align="center">
   Marc Domènech i Vila, Sergio Álvarez Napagao and Dmitry Gnatyshak
+</h2>
+<h3 align="center">
+  High Performance Artificial Intelligence research group (HPAI)
 </h3>
-<p align="center">
-  High Performance Artificial Intelligence research group
-</p>
+
 
 
 
@@ -20,7 +21,7 @@ Even though with each passing day the AI gains popularity thanks to its successf
 
 In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/PantheonRL) package for training and testing an agent in the [Overcooked-AI](https://github.com/HumanCompatibleAI/overcooked_ai) environment. Overcooked-AI is a benchmark environment for fully cooperative human-AI task performance, based on the wildly popular video game [Overcooked](http://www.ghosttowngames.com/overcooked). The goal of the game is to deliver soups as fast as possible. Each soup requires placing up to 3 ingredients in a pot, waiting for the soup to cook, and then having an agent pick up the soup and delivering it. The agents should split up tasks on the fly and coordinate effectively in order to achieve high reward. The environment has the following reward function: 3 points if the agent places an onion in a pot or if takes a dish, and 5 points if it takes a soup. Here in this work, we have worked with five different layouts: *simple*, *unident\_s*, *random0*, *random1*, *random3*.
 
-![layouts](/Users/marcdomenech/Desktop/UPC/GEI/Assignatures/TFG/GitLab/overcooked-explainability/Images/layouts.gif)
+![layouts](Images/layouts.gif)
 
 
 
@@ -180,7 +181,7 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 For more information about the project, see the following document: 
 
-- [Paper/TFG]()
+- [Paper/TFG (Provisional)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
 
 
 
