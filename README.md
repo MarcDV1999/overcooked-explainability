@@ -196,7 +196,7 @@ For more information about the project, see the following document:
 
 - **Sergio Álvarez Napagao** - ([Sergio Álvarez](mailto:sergio.alvarez@bsc.es))
 
-### Thesis co-supervisor
+### Thesis co-supervisor
 
 - **Dmitry Gnatyshak** - ([Dmitry Gnatyshak](mailto:dmitry.gnatyshak@bsc.es))
 
