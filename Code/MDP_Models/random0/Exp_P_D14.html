@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1411.2px;
+            height: 702.0px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "label": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "shape": "dot", "size": 54}, {"id": "O-*-Wa-Of-S-S-S-S-B-T-R-W", "label": "O-*-Wa-Of-S-S-S-S-B-T-R-W", "shape": "dot", "size": 43}, {"id": "O-O-Wa-Of-S-S-S-S-B-T-R-W", "label": "O-O-Wa-Of-S-S-S-S-B-T-R-W", "shape": "dot", "size": 30}, {"id": "O-*-Wa-Of-B-S-S-S-B-T-R-W", "label": "O-*-Wa-Of-B-S-S-S-B-T-R-W", "shape": "dot", "size": 30}, {"id": "O-O-Wa-Of-B-S-S-S-B-T-R-W", "label": "O-O-Wa-Of-B-S-S-S-B-T-R-W", "shape": "dot", "size": 30}, {"id": "*-O-Wa-Of-S-S-S-S-B-T-R-W", "label": "*-O-Wa-Of-S-S-S-S-B-T-R-W", "shape": "dot", "size": 30}, {"id": "O-O-Wa-Of-S-S-S-S-B-I-R-W", "label": "O-O-Wa-Of-S-S-S-S-B-I-R-W", "shape": "dot", "size": 50}]);
+        edges = new vis.DataSet([{"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "to": "O-*-Wa-Of-S-S-S-S-B-T-R-W", "weight": 0.8391659553712962}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "to": "O-O-Wa-Of-S-S-S-S-B-T-R-W", "weight": 0.13876356541885135}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "to": "O-*-Wa-Of-B-S-S-S-B-T-R-W", "weight": 0.01950981587611267}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "to": "O-O-Wa-Of-B-S-S-S-B-T-R-W", "weight": 0.002560663333739788}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-O-Wa-Of-S-S-S-S-B-T-R-W", "to": "*-*-Wa-Of-I-S-S-S-B-T-R-W", "weight": 0.5106382978723404}, {"action": 5, "arrows": "to", "color": "FF7BA9", "from": "*-O-Wa-Of-S-S-S-S-B-T-R-W", "to": "*-O-Wa-Of-S-S-S-S-B-T-R-W", "weight": 0.4846335697399527}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "O-O-Wa-Of-S-S-S-S-B-T-R-W", "to": "O-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.9489953632148377}, {"action": 0, "arrows": "to", "color": "FF6B6B", "from": "O-*-Wa-Of-S-S-S-S-B-T-R-W", "to": "O-O-Wa-Of-S-S-S-S-B-I-R-W", "weight": 0.9862597859082921}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {"nodes": {"color": {"highlight": {"border": "rgba(134,41,233,1)", "background": "rgba(198,171,255,1)"}}, "font": {"size": 25, "strokeWidth": 13}}, "edges": {"arrowStrikethrough": false, "color": {"inherit": true, "highlight": {"border": "rgba(57,70,233,1)"}}, "selfReferenceSize": 50, "smooth": {"forceDirection": "none"}}, "interaction": {"hover": false, "multiselect": true}, "physics": {"barnesHut": {"damping": 1, "avoidOverlap": 0.9, "gravitationalConstant": -23000}, "minVelocity": 0.75}};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

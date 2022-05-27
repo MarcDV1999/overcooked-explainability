@@ -1,0 +1,35 @@
+
+Description:
+----------------
+
+Predicates: 
+	['held', 'held_partner', 'pot_state_0', 'pot_state_1', 'onion_pos', 'tomato_pos', 'dish_pos', 'pot_pos_0', 'pot_pos_1', 'service_pos', 'soup_pos']
+
+
+Parameters used:
+----------------
+
+	- Date: 	2022-05-18 01:05:02.684262,
+	- ID: 	Experiment_500_25,
+	- RL Agent ID: _random3_1M,
+	- Discretizer: <class 'Code.Explainability.Discretizers.Discretizer12.Discretizer12'>,
+	- MDP Algorithm: <class 'Code.Explainability.CompletePolicyGraph.CompletePolicyGraph'>,
+	- Train: True,
+	- Test: True,
+	- Train Verbose: False,
+	- Test Verbose: False,
+	- Layout: random3,
+	- Train Episodes: 3,
+	- Train Seeds: 500,
+	- Test Episodes: 4,
+	- Test Seeds: 15
+
+Results:
+---------
+
+	- Average Episode Reward Diff: -1.5899999999999892
+	- Standard Deviation Diff: 2.212839266477077
+	- Transfered Learning: 97%
+	- New states: 0.1625%
+	- Seen states: 0.003365054869684499%
+	- STD: 159.77087414201898%
