@@ -41,10 +41,10 @@ if __name__ == '__main__':
 
 
     # Run one experiment only
-    experiment = Experiment(id='Experiment_500_25', rl_agent_id='_random0_1M',
+    experiment = Experiment(id='Experiment_500_25', rl_agent_id='_simple1M',
                             discretizer=Discretizer14,
                             pg_algorithm=CompletePolicyGraph,
-                            layout='random0',
+                            layout='simple',
                             description="")
 
     experiment.run(train=False,
@@ -52,7 +52,7 @@ if __name__ == '__main__':
                    train_verbose=False, test_verbose=False,
                    train_episodes=3, train_seeds=range(1, 10, 1),
                    test_episodes=1, test_seeds=range(100, 101, 1),
-                   ask_questions_xai=True)
+                   ask_questions_xai=False)
 
 
 

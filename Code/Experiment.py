@@ -62,7 +62,8 @@ class Experiment:
             train_verbose=False, test_verbose=False,
             train_episodes=5, train_seeds=range(1, 100, 1),
             test_episodes=3, test_seeds=range(100, 105, 1),
-            ask_questions_xai=False):
+            ask_questions_xai=False,
+            subgraph=None):
 
         """ Executes an Experiment
 
@@ -103,7 +104,7 @@ class Experiment:
             self.__save_parameters_to_file(train, test, train_verbose, test_verbose, train_episodes, train_seeds, test_episodes, test_seeds)
 
         # Visualize the resulting MDP Agent
-        pg.show_interactive(second_display=False, show_options=False, subgraph=6)
+        pg.show_interactive(second_display=False, show_options=True, subgraph=subgraph)
 
         # Questions XAI
         if ask_questions_xai:

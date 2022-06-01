@@ -1,3 +1,5 @@
+import random
+
 from Code.Utils.utils import get_assigned_color, action_num_to_str, action_num_to_char, get_weight_assigned_color
 from matplotlib import pyplot as plt
 from screeninfo import get_monitors
@@ -152,11 +154,36 @@ class NetworkVisualizer:
         # Displaying graph
         nt = Network(height=f"{height}px", width=f"{width}px", directed=True)
         if subgraph is not None:
-            self.pg = self.pg.subgraph(list(self.pg.nodes)[15:15+subgraph+1])
+            n = 0
+            for node in list(self.pg.nodes()):
+                if len(self.pg.edges(node)) == subgraph:
+                    n = node
+                    break
+            s = 0
+            subnodes = [n]
+            for u, v, w in set(self.pg.edges(n, data='weight')):
+                s += w
+                subnodes.append(v)
+
+            print(subnodes)
+
+            self.pg = self.pg.subgraph(subnodes)
+            edges = []
+            for node in self.pg.edges(data=True):
+                if node[0] == n or node[1] == n and (node[0], node[1]) not in edges:
+                    node[2]['label'] = round(node[2]['weight'] ,2)
+                    edges.append((node[0], node[1]))
+                    print('\t', node)
+                else:
+                    print('NO', node)
+
+            #print(self.pg.edges(data=True))
+
         nt.from_nx(self.pg)
-        nt.toggle_physics(True)
+        nt.toggle_physics(False)
         nt.set_edge_smooth('dynamic')
         self.get_legend_nodes(500 ,500)
+
 
         # Show options if requested
         if show_options:
