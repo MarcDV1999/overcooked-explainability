@@ -1,0 +1,29 @@
+
+Description:
+----------------
+
+Predicates: 
+	['held', 'held_partner', 'pot_state_0', 'onion_pos', 'tomato_pos', 'dish_pos', 'pot_pos_0', 'service_pos', 'soup_pos']
+
+
+Parameters used:
+----------------
+
+	- Date: 	2022-06-07 14:09:53.242241,
+	- ID: 	2_Experiment2_500_25,
+	- RL Agent ID: _simple1M,
+	- Discretizer: <class 'Code.Explainability.Discretizers.Discretizer12.Discretizer12'>,
+	- MDP Algorithm: <class 'Code.Explainability.CompletePolicyGraph.CompletePolicyGraph'>,
+	- Train: True,
+	- Test: True,
+	- Train Verbose: False,
+	- Test Verbose: False,
+	- Layout: simple,
+	- Train Episodes: 3,
+	- Train Seeds: 500,
+	- Test Episodes: 4,
+	- Test Seeds: 15
+
+Results:
+---------
+

@@ -1,16 +1,13 @@
 from abc import ABC, abstractmethod
-import enum
 from collections import defaultdict, deque
 
 from gym.wrappers.order_enforcing import OrderEnforcing
 
 from Code.PantheonRL.overcookedgym.human_aware_rl.overcooked_ai.overcooked_ai_py.mdp.overcooked_mdp import \
     OvercookedState, PlayerState, ObjectState, OvercookedGridworld
-from Code.PantheonRL.overcookedgym.overcooked import OvercookedMultiEnv
 from Code.Utils.utils import Orientations, get_move, Actions, CardinalDirection
 from functools import reduce
 import operator
-import random
 
 class Discretizer(ABC):
 

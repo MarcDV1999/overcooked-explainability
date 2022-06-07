@@ -1,0 +1,29 @@
+Description:
+----------------
+
+Predicates: 
+	['held', 'pot_state_0', 'onion_pos', 'tomato_pos', 'dish_pos', 'pot_pos_0', 'service_pos', 'soup_pos']
+
+----------------
+
+Training Episodes: 3, Test Episodes: 4, PG Algorithm: <class 'Code.Explainability.CompletePolicyGraph.CompletePolicyGraph'>, Discretizer: <class 'Code.Explainability.Discretizers.Discretizer11.Discretizer11'>
+Seed: 0-25	AER: -113.7	STD: 93.2	Transfered Learning: 70%	New States: 24.62%	Seen States: 0.0264%	STD: 900.6478%
+Seed: 25-50	AER: -27.6	STD: 26.2	Transfered Learning: 92%	New States: 4.11%	Seen States: 0.0343%	STD: 255.7631%
+Seed: 50-75	AER: -35.0	STD: 23.3	Transfered Learning: 91%	New States: 4.38%	Seen States: 0.0391%	STD: 247.2754%
+Seed: 75-100	AER: -21.3	STD: 14.0	Transfered Learning: 94%	New States: 1.03%	Seen States: 0.0416%	STD: 168.6196%
+Seed: 100-125	AER: -26.4	STD: 15.0	Transfered Learning: 93%	New States: 0.17%	Seen States: 0.044%	STD: 188.6922%
+Seed: 125-150	AER: -15.1	STD: 9.5	Transfered Learning: 96%	New States: 0.16%	Seen States: 0.0455%	STD: 186.5973%
+Seed: 150-175	AER: -26.9	STD: 12.3	Transfered Learning: 93%	New States: 1.97%	Seen States: 0.0475%	STD: 171.6057%
+Seed: 175-200	AER: -18.2	STD: 12.3	Transfered Learning: 95%	New States: 1.59%	Seen States: 0.048%	STD: 161.3229%
+Seed: 200-225	AER: -14.0	STD: -0.6	Transfered Learning: 96%	New States: 0.98%	Seen States: 0.0485%	STD: 97.0878%
+Seed: 225-250	AER: -26.3	STD: 9.5	Transfered Learning: 93%	New States: 0.27%	Seen States: 0.0506%	STD: 170.0997%
+Seed: 250-275	AER: -21.7	STD: 13.2	Transfered Learning: 94%	New States: 1.54%	Seen States: 0.0507%	STD: 184.9944%
+Seed: 275-300	AER: -16.1	STD: 10.9	Transfered Learning: 95%	New States: 1.95%	Seen States: 0.0536%	STD: 149.8135%
+Seed: 300-325	AER: -9.0	STD: -2.1	Transfered Learning: 97%	New States: 0.04%	Seen States: 0.0543%	STD: 87.0481%
+Seed: 325-350	AER: -21.2	STD: 12.4	Transfered Learning: 94%	New States: 0.25%	Seen States: 0.0564%	STD: 205.1855%
+Seed: 350-375	AER: -13.1	STD: 0.5	Transfered Learning: 96%	New States: 0.05%	Seen States: 0.0569%	STD: 102.4197%
+Seed: 375-400	AER: -16.2	STD: 4.2	Transfered Learning: 95%	New States: 1.16%	Seen States: 0.0575%	STD: 126.1606%
+Seed: 400-425	AER: -11.5	STD: 0.8	Transfered Learning: 96%	New States: 0.61%	Seen States: 0.0582%	STD: 102.6043%
+Seed: 425-450	AER: -18.7	STD: 6.6	Transfered Learning: 95%	New States: 0.5%	Seen States: 0.0595%	STD: 136.2758%
+Seed: 450-475	AER: -31.1	STD: 21.5	Transfered Learning: 91%	New States: 1.43%	Seen States: 0.0597%	STD: 268.8329%
+Seed: 475-500	AER: -10.2	STD: -4.9	Transfered Learning: 97%	New States: 0.11%	Seen States: 0.062%	STD: 84.4289%

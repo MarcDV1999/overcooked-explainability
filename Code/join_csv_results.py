@@ -51,7 +51,7 @@ def select_folder(new_list):
 if __name__ == '__main__':
 
     # Select which layout
-    layout = 'unident_s'
+    layout = 'random3'
     results_folder = f'MDP_Results/{layout}/'
 
     dir_list = list(

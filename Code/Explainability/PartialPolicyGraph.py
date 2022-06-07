@@ -37,6 +37,7 @@ class PartialPolicyGraph(PolicyGraph):
 
         In this algorithm, each node only saves the best action for this reason, each node only has one possible action
         """
+        self.pg = nx.DiGraph(name='MDP')
         # For each state, we take into account the most probable action
         for state, actions in self.frequencies.items():
             action_keys = np.array(list(actions.keys()))
@@ -111,16 +112,6 @@ class PartialPolicyGraph(PolicyGraph):
         return possible_actions[0][0]
 
     def update_edge(self, u, v, a, w, color):
-        # Edges
-        edge = self.pg.get_edge_data(u, v)
-        if edge is not None:
-            # Exists the edge
-            if edge['action'] == a:
-                # Compute the new weight
-                # edge['weight'] = (alpha * w) + ((1 - alpha) * edge['weight'])
-                edge['weight'] = w
-                return True
-
         # Edge does not exist
         self.pg.add_edge(u, v, action=a, weight=w, color=color)
         return True

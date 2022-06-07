@@ -29,21 +29,20 @@ In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/Panthe
 
 ---
 
-This repo has already all we need. ⚠️ It is **important to use the files included in this repo** because I have had to modify some files from PantheonRL in order to get the agent observation as we wanted. ⚠️.
-
-The only thing you have to install is:
+Run the following command lines to get started.
 
 ```bash
-pip install networkx==2.6.3   
+conda create -n overcooked_env python=3.7
+conda activate overcooked_env
+
+bash install.sh
 ```
-
-
 
 # 🤖 Training our RL Agent
 
 ---
 
-In our case we will use an agent trained with a RL technique called [PPO (Proximal Policy Optimization)](). To do so, we can execute one of the following command lines.
+When installing the repository, we can see some pre-trained models using . We can use any of them or train one on our own. To do so, we can execute one of the following command lines.
 
 ```bash
 cd Code/Training
@@ -101,7 +100,7 @@ bash test_GUI.sh 0 simple
 
 >## 👍 Trained Models
 >
->When cloning the repository you will see that in [`models`](Code/PantheonRL/models) folder, there are already trained models. Here I attach a brief summary of each one.
+>When cloning the repository you will see that in [`models`](Code/PantheonRL/models) folder, there are already trained models. Here I attach a brief summary of each one. Each of them have been trained five for 1M total timesteps and with an episode length of 400 steps.
 >
 >| Layout    | Mean Episode Reward | Standard Deviation |
 >| --------- | ------------------- | ------------------ |
@@ -116,6 +115,12 @@ bash test_GUI.sh 0 simple
 ---
 
 Here we can see a brief summary of the repo structure.
+
+## 🐍 Main scripts
+
+- [`run_experiment.py`](run_experiment.py): Reproduces a single experiment. With this script, we can build and test a Policy Graph agent . 
+- [`run_all_experiments.py`](run_all_experiments.py): Reproduces all the experiments. With this script, we can build and test a set of Policy Graph agents.
+- [`ask_xai_questions.py`](ask_xai_questions.py): It opens a menu where we can ask for explanations for a given PG agent.
 
 ## 🧑🏼‍💻 Code Folder
 
@@ -181,7 +186,7 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 For more information about the project, see the following document: 
 
-- [Paper/TFG (Provisional)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
+- [Paper/TFG (Currently submitted to CCIA 2022)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
 
 
 

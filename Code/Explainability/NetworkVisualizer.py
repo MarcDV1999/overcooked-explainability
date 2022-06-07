@@ -38,7 +38,7 @@ class NetworkVisualizer:
     },
     "font": {
       "size": 25,
-      "strokeWidth": 13
+      "strokeWidth": 5
     }
   },
   "edges": {
@@ -48,6 +48,9 @@ class NetworkVisualizer:
       "highlight": {
         "border": "rgba(57,70,233,1)"
       }
+    },
+    "font": {
+      "strokeWidth": 10
     },
     "selfReferenceSize": 50,
     "smooth": {
@@ -165,19 +168,12 @@ class NetworkVisualizer:
                 s += w
                 subnodes.append(v)
 
-            print(subnodes)
-
             self.pg = self.pg.subgraph(subnodes)
             edges = []
             for node in self.pg.edges(data=True):
                 if node[0] == n or node[1] == n and (node[0], node[1]) not in edges:
                     node[2]['label'] = round(node[2]['weight'] ,2)
                     edges.append((node[0], node[1]))
-                    print('\t', node)
-                else:
-                    print('NO', node)
-
-            #print(self.pg.edges(data=True))
 
         nt.from_nx(self.pg)
         nt.toggle_physics(False)

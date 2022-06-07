@@ -38,6 +38,8 @@ class CompletePolicyGraph(PolicyGraph):
 
         In this algorithm, each node can have multiple edges with different actions
         """
+        self.pg = nx.MultiDiGraph(name='MDP')
+
         for state, actions in self.frequencies.items():
             # Times per action
             sum_partial = {action: sum(list(next_states.values())) for action, next_states in

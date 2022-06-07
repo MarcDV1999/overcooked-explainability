@@ -482,7 +482,13 @@ class PolicyGraph(ABC):
         # Out edges with actions [(u, v, a), ...]
         possible_actions = [(u, data['action'], v, data['weight'])
                             for u, v, data in self.pg.out_edges(predicate, data=True)]
-
+        """
+        for node in self.pg.nodes():
+            possible_actions = [(u, data['action'], v, data['weight'])
+                                for u, v, data in self.pg.out_edges(node, data=True)]
+            s = sum([w for _,_,_,w in possible_actions])
+            assert  s < 1.001 and s > 0.99, f'Error {s}'
+        """
         # Drop duplicated edges
         possible_actions = list(set(possible_actions))
         # Predicate has at least 1 out edge.
