@@ -43,7 +43,7 @@ if __name__ == '__main__':
     layouts = ['random3']
 
     # Run all the experiments at once
-    run_all_experiments(uuid="2_Experiment_500_25",
+    run_all_experiments(uuid="New_Experiment_500_25",
                         agent_ids=agent_ids[::-1],
                         layouts=layouts[::-1],
                         batch_size=25,
