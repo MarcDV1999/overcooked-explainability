@@ -51,7 +51,7 @@ cd Code/Training
 bash train.sh 0 simple 1000000
 ```
 
-Once the training had been finished, we will be able to see the following trained agents in [`models`](Code/PantheonRL/models) folder:
+Once the training had been finished, we will be able to see the following trained agents in [`rl_models`](rl_models) folder:
 
 - **Ego Agent:** The ego-agent is considered the main agent in the environment. From the perspective of the ego agent, the environment functions like a regular gym environment.
 - **Alt Agents:** The alt-agents are the partner agents that are embedded in the environment. If multiple are listed, the environment randomly samples one of them to be the partner at the start of each episode.
@@ -100,7 +100,7 @@ bash test_GUI.sh 0 simple
 
 >## 👍 Trained Models
 >
->When cloning the repository you will see that in [`models`](Code/PantheonRL/models) folder, there are already trained models. Here I attach a brief summary of each one. Each of them have been trained five for 1M total timesteps and with an episode length of 400 steps.
+>When cloning the repository you will see that in [`rl_models`](rl_models) folder, there are already trained models. Here I attach a brief summary of each one. Each of them have been trained five for 1M total timesteps and with an episode length of 400 steps.
 >
 >| Layout    | Mean Episode Reward | Standard Deviation |
 >| --------- | ------------------- | ------------------ |

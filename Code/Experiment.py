@@ -36,8 +36,8 @@ class Experiment:
         self.percentage_STD = None
 
         self.rl_agent_id = rl_agent_id
-        self.ego_file = 'Code/PantheonRL/models/ego{}'.format(self.rl_agent_id)
-        self.alt_file = 'Code/PantheonRL/models/alt{}'.format(self.rl_agent_id)
+        self.ego_file = 'rl_models/ego{}'.format(self.rl_agent_id)
+        self.alt_file = 'rl_models/alt{}'.format(self.rl_agent_id)
 
         discretizer_ID = ''.join(filter(str.isdigit, discretizer.__name__))
         pg_algorithm_ID = pg_algorithm.__name__[0].upper()
