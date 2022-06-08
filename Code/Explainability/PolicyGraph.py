@@ -357,6 +357,10 @@ class PolicyGraph(ABC):
     def select_action_using_mdp(self, predicate, verbose):
         pass
 
+    @abstractmethod
+    def get_most_probable_option(self, predicate, verbose):
+        pass
+
     def get_nearest_predicate(self, predicate, verbose=False):
         """ Returns the nearest predicate on the MDP. If already exists, then we return the same predicate. If not,
         then tries to change the predicate to find a similar state (Maximum change: 1 value).
@@ -438,23 +442,24 @@ class PolicyGraph(ABC):
         """
         Answers the question: What will you do when you are in state X?
         """
-        print('---------------------------------')
+        print('**************************************')
         print('* What will I do when I am in state X?')
-        print('\t- Possible states\n')
+        print('**************************************\n')
+        print('Possible predicates:\n')
         predicate_example = np.random.choice(list(self.pg.nodes()), 1)[0]
-        print(self.discretizer.get_predicate_options(predicate_example, indentation=2))
+        print(self.discretizer.get_predicate_options(predicate_example, indentation=1))
 
         while True:
-            predicate = input('\t- What will I do when I am in state: ')
+            predicate = input('What will I do when I am in state: ')
             if not (self.discretizer.is_predicate(predicate)):
                 print("\t\t!! Error: {} it's not a valid state".format(predicate))
             else:
                 break
 
         possible_actions = self.get_possible_actions(predicate)
-        print('\t\tI will take one of this actions:')
+        print('I will take one of these actions:')
         for action, prob in possible_actions:
-            print('\t\t\t+', action.name, '\tProbability:', round(prob * 100, 2), '%')
+            print('\t->', action.name, '\tProbability:', round(prob * 100, 2), '%')
 
     def get_possible_actions(self, predicate):
         """ Given a predicate, get the possible actions and it's probabilities
@@ -506,25 +511,28 @@ class PolicyGraph(ABC):
         """
         Answers the question: When do you perform action X?
         """
-        print('---------------------------------')
+        print('*********************************')
         print('* When do you perform action X?')
-        print('\t- Possible actions\n')
-        print(self.discretizer.get_action_options(indentation=2))
+        print('*********************************')
+        print('Possible actions:\n')
+        print(self.discretizer.get_action_options(indentation=1))
 
         while True:
-            action = input('\t- When do you perform action: ').capitalize()
+            action = input('When do you perform action: ').capitalize()
             if not (self.discretizer.is_action(action)):
                 print("\t\t!! Error: {} it's not a valid action".format(action))
             else:
                 break
 
         all_nodes, best_nodes = self.get_when_perform_action(action)
-        print(f"\t\t\tPossible ({len(all_nodes)} states)\t\tMost probable ({len(best_nodes)} states)")
+        #print(f"\t\t\tPossible ({len(all_nodes)} states)\t\tMost probable ({len(best_nodes)} states)")
+        print(f"{action.capitalize()} is the most probable action in {len(best_nodes)} states:")
         for i in range(len(all_nodes)):
             if i < len(best_nodes):
-                print(f"\t\t- {all_nodes[i]}\t\t{best_nodes[i]}")
-            else:
-                print(f"\t\t- {all_nodes[i]}")
+                #print(f"\t\t- {all_nodes[i]}\t\t{best_nodes[i]}")
+                print(f"\t-> {best_nodes[i]}")
+            #else:
+            #    print(f"\t\t- {all_nodes[i]}")
 
     def get_when_perform_action(self, action):
         """ When do you perform action
@@ -553,23 +561,24 @@ class PolicyGraph(ABC):
         """
         Answers the question: Why do you perform action X in state Y?
         """
-        print('---------------------------------')
+        print('***********************************************')
         print('* Why did not you perform X action in Y state?')
-        print('\t- Possible actions\n')
-        print(self.discretizer.get_action_options(indentation=2))
+        print('***********************************************')
+        print('Possible actions:\n')
+        print(self.discretizer.get_action_options(indentation=1))
 
         while True:
-            action = input('\t- Why did not you perform action: ').capitalize()
+            action = input('Action: ').capitalize()
             if not (self.discretizer.is_action(action)):
                 print("\t\t!! Error: {} it's not a valid action".format(action))
             else:
                 break
 
-        print('\t- Possible states\n')
+        print('Possible predicates:\n')
         predicate_example = np.random.choice(list(self.pg.nodes()), 1)[0]
-        print(self.discretizer.get_predicate_options(predicate_example, indentation=2))
+        print(self.discretizer.get_predicate_options(predicate_example, indentation=1))
         while True:
-            predicate = input('\t- In state: ')
+            predicate = input('State: ')
             if not (self.discretizer.is_predicate(predicate)):
                 print("\t\t!! Error: {} it's not a valid state".format(predicate))
             else:
@@ -587,12 +596,20 @@ class PolicyGraph(ABC):
                 print(f"\t\t\t- {predicate}")
 
         result = self.nearby_predicates(predicate)
-        print(f"\t\tI have not chosen {action} in {predicate} because:")
+        best_action = self.select_action_using_mdp(predicate, verbose=False)
+        print('I would have chosen:', best_action)
+        print(f"If I had chosen {action} in {predicate}, I could have end up in:")
+        any_explanation = False
         for a, v, diff in result:
-            print(f"\t\t\t- If I chose {a.name} then I would end up to {v}")
-            for predicate_key,  predicate_value in diff.items():
-                print(f"\t\t\t\t- {predicate_key} --> Now: {predicate_value[0]}\tHypothetically: {predicate_value[1]}")
-
+            # Only if performs the input action
+            if a == Actions[action]:
+                any_explanation = True
+                print(f"\t{v}")
+                for predicate_key,  predicate_value in diff.items():
+                    print(f"\t\tNow {predicate_key} = {predicate_value[0]}\tTaking {a.name}, {predicate_key} = {predicate_value[1]}")
+        if not any_explanation:
+            print("\tI don't know where I would have ended up")
+    
     def nearby_predicates(self, state):
         """
         Gets nearby states from state
@@ -602,7 +619,14 @@ class PolicyGraph(ABC):
         """
         outs = self.pg.out_edges(state, data=True)
         outs = [(u, d['action'], v, d['weight']) for u, v, d in outs]
-        result = [(Actions(a), v, self.subtract_predicates(u, v)) for u, a, v, w in outs]
+
+        #result = [(Actions(a), v, self.subtract_predicates(u, v)) for u, a, v, w in outs]
+        result = [(self.get_most_probable_option(v, verbose=False), 
+                    v, 
+                    self.subtract_predicates(u, v)
+                    ) for u, a, v, w in outs]
+        
+        #result = [(self.select_action_using_mdp(v, verbose=False), v, d) for _, v, d in result]
         return result
 
     def subtract_predicates(self, origin, destination):

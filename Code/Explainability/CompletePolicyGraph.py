@@ -112,6 +112,26 @@ class CompletePolicyGraph(PolicyGraph):
 
         return rand_action
 
+    def get_most_probable_option(self, predicate, verbose):
+        """
+        Given a predicate, goes to the MDP and selects the corresponding action.
+        Since each node can have multiple possible actions, we can face this problem in different ways:
+
+        - Take the most probable action
+        - Take one action using its probability distribution
+
+        Here we used the second one, but other options could work
+
+        :param predicate: Existent or non-existent state
+        :param verbose: Prints additional information
+        :return: Action
+        """
+
+        nearest_predicate = self.get_nearest_predicate(predicate, verbose=verbose)
+        possible_actions = self.get_possible_actions(nearest_predicate)
+        possible_actions = sorted(possible_actions, key=lambda x: x[1])
+        return possible_actions[-1][0]
+
     def update_edge(self, u, v, a, w, color):
         # Edges
         edges = self.pg.get_edge_data(u, v)

@@ -111,6 +111,13 @@ class PartialPolicyGraph(PolicyGraph):
         # Possible actions always will have 1 element since  for each state we only save the best action
         return possible_actions[0][0]
 
+    def get_most_probable_option(self, predicate, verbose):
+        nearest_predicate = self.get_nearest_predicate(predicate, verbose=verbose)
+        possible_actions = self.get_possible_actions(nearest_predicate)
+
+        # Possible actions always will have 1 element since  for each state we only save the best action
+        return possible_actions[0][0]
+
     def update_edge(self, u, v, a, w, color):
         # Edge does not exist
         self.pg.add_edge(u, v, action=a, weight=w, color=color)
