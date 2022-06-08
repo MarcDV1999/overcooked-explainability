@@ -11,6 +11,7 @@ pip install -e overcookedgym/human_aware_rl/overcooked_ai
 
 cp ../overcooked.py overcookedgym
 
+cd ../..
 pip install -r requirements.txt
 
 #cd Code/PantheonRL
