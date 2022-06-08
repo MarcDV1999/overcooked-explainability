@@ -35,7 +35,10 @@ Run the following command lines to get started.
 conda create -n overcooked_env python=3.7
 conda activate overcooked_env
 
-bash install.sh
+git clone https://gitlab.hpai.bsc.es/rl/overcooked-explainability.git
+
+cd overcooked-explainability
+bash install.sh 
 ```
 
 # 🤖 Training our RL Agent
