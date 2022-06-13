@@ -320,12 +320,17 @@ class Discretizer(ABC):
         """
         num_pots = len(self.get_basic_sources()['pot'])
         text_indentation = '\t' * indentation
+        if indentation == 0:
+            text_indentation = ''
         text = ''
         for predicate, options in self.predicate_space.items():
-            if predicate == 'pot_state' or predicate == 'pot_pos':
-                text = text + ''.join([text_indentation + 'Predicate: ' + predicate + f' {i}\tOptions: ' + str(options) + '\n' for i in range(num_pots)])
+
+            #if predicate == 'pot_state' or predicate == 'pot_pos':
+            #    text = text + ''.join([text_indentation + '+ ' + predicate + f' {i}\t' + '|'.join(options) + '\n' for i in range(num_pots)])
+            if predicate == 'held':
+                text = text + text_indentation + '+ ' + predicate + '\t\t' + ' | '.join(options) + '\n'
             else:
-                text = text + text_indentation + 'Predicate: ' + predicate + '\tOptions: ' + str(options) + '\n'
+                text = text + text_indentation + '+ ' + predicate + '\t' + ' | '.join(options) + '\n'
 
         text = text + '\n' + text_indentation + 'Example:\t' + predicate_example + '\n'
         return text
@@ -336,9 +341,11 @@ class Discretizer(ABC):
         :params indentation: Number of right identations to add in the text
         """
         text_indentation = '\t' * indentation
+        if indentation == 0:
+            text_indentation = ''
         text = ''
         for action in Actions:
-           text = text + text_indentation + 'Action: ' + action.name + '\n'
+           text = text + text_indentation + '+ ' + action.name + '\n'
 
         # Give an example
         text = text + '\n' + text_indentation + 'Example:\t' + Actions(1).name + '\n'

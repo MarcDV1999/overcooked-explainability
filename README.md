@@ -124,6 +124,7 @@ Here we can see a brief summary of the repo structure.
 - [`run_experiment.py`](run_experiment.py): Reproduces a single experiment. With this script, we can build and test a Policy Graph agent . 
 - [`run_all_experiments.py`](run_all_experiments.py): Reproduces all the experiments. With this script, we can build and test a set of Policy Graph agents.
 - [`ask_xai_questions.py`](ask_xai_questions.py): It opens a menu where we can ask for explanations for a given PG agent.
+- [`get_subgraph.py`](get_subgraph.py): Takes a MDP agent and saves a subgraph.
 
 ## 🧑🏼‍💻 Code Folder
 

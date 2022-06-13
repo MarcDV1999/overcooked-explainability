@@ -156,10 +156,13 @@ class NetworkVisualizer:
 
         # Displaying graph
         nt = Network(height=f"{height}px", width=f"{width}px", directed=True)
+
+
         if subgraph is not None:
             n = 0
             for node in list(self.pg.nodes()):
-                if len(self.pg.edges(node)) == subgraph:
+                num = len(self.pg.edges(node))
+                if num >= subgraph[0] and num <= subgraph[1] and random.randint(0,4) == 2:
                     n = node
                     break
             s = 0
@@ -172,8 +175,9 @@ class NetworkVisualizer:
             edges = []
             for node in self.pg.edges(data=True):
                 if node[0] == n or node[1] == n and (node[0], node[1]) not in edges:
-                    node[2]['label'] = round(node[2]['weight'] ,2)
+                    node[2]['label'] = round(node[2]['weight'] ,3)
                     edges.append((node[0], node[1]))
+
 
         nt.from_nx(self.pg)
         nt.toggle_physics(False)

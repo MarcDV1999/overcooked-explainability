@@ -18,13 +18,13 @@ if __name__ == '__main__':
 
     # Run one experiment only
     experiment = Experiment(id='2_Experiment_500_25', rl_agent_id='_simple1M',
-                            discretizer=Discretizer11,
+                            discretizer=Discretizer14,
                             pg_algorithm=CompletePolicyGraph,
-                            layout='simple',
-                            description="")
+                            layout='simple'
+                            )
+
     experiment.run(train=False,
                    test=False,
-                   ask_questions_xai=True,
-                   subgraph=None)
-    # subgraph=5 -> Partial
-    # subgraph=2,3 -> Complete
+                   subgraph=[4,5])
+    # Subgraph: Find a node in the MDP such as its total edges is between [min, max]. Once we found the node, save its
+    # subgraph

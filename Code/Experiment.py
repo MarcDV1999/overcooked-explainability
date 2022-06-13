@@ -195,10 +195,12 @@ class Experiment:
         :return:
         """
         while True:
+            print('\n****************************')
             print('* What do you want to ask?')
+            print('****************************')
             print('\t1: What will you do when you are in state __?')
             print('\t2: When do you perform action __?')
-            print('\t3: Why do you perform action __ in state __?')
+            print('\t3: Why did not you perform action __ in state __?')
             print('\t4: Exit')
             option = int(input('Option: '))
             if option == 1:
