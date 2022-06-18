@@ -595,8 +595,8 @@ class PolicyGraph(ABC):
             predicate = self.get_nearest_predicate(predicate)
             # Nearest predicate not found -> Random action
             if predicate is None:
-                print(f"\t\t\t- I haven't a similar predicate. The decision had been random")
-
+                print(f"\t|I haven't a similar predicate where this action is its most probable one:")
+                return
             else:
                 print(f"\t+ {predicate}")
 

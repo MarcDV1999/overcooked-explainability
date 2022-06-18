@@ -575,7 +575,8 @@ class Discretizer(ABC):
 
     def str_predicate_to_dict(self, predicate: str):
         predicate_space = self.get_predicate_space()
-
+        if predicate is None:
+            return None
         return dict(zip(list(predicate_space.keys()), predicate.split('-')))
 
     def dict_predicate_to_str(self, predicate: dict):

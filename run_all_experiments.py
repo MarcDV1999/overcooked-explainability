@@ -39,9 +39,6 @@ if __name__ == '__main__':
     agent_ids =   ['_simple1M', '_unident_s1M', '_random0_1M', '_random1_1M', '_random3_1M']
     layouts =     ['simple', 'unident_s', 'random0', 'random1', 'random3']
 
-    agent_ids = ['_random3_1M']
-    layouts = ['random3']
-
     # Run all the experiments at once
     run_all_experiments(uuid="New_Experiment_500_25",
                         agent_ids=agent_ids[::-1],
@@ -49,7 +46,7 @@ if __name__ == '__main__':
                         batch_size=25,
                         test_seeds=15, test_episodes=4,
                         train_seeds=500, train_episodes=3,
-                        discretizers=[Discretizer11, Discretizer12, Discretizer13][::-1],
+                        discretizers=[Discretizer11, Discretizer12, Discretizer13, Discretizer14][::-1],
                         pg_algorithms=[PartialPolicyGraph, CompletePolicyGraph],
                         description=""
                         )

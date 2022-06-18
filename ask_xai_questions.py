@@ -17,10 +17,10 @@ if __name__ == '__main__':
     # layouts =     ['simple', 'unident_s', 'random0', 'random1', 'random3']
 
     # Run one experiment only
-    experiment = Experiment(id='2_Experiment_500_25', rl_agent_id='_simple1M',
-                            discretizer=Discretizer11,
+    experiment = Experiment(id='2_Experiment_500_25', rl_agent_id='_random3_1M',
+                            discretizer=Discretizer14,
                             pg_algorithm=CompletePolicyGraph,
-                            layout='simple',
+                            layout='random3',
                             description="")
     experiment.run(train=False,
                    test=False,
@@ -28,3 +28,5 @@ if __name__ == '__main__':
                    subgraph=None)
     # subgraph=5 -> Partial
     # subgraph=2,3 -> Complete
+
+    # top O-O-Wa-Wa-L-S-S-B-L-T-T-N Complete
