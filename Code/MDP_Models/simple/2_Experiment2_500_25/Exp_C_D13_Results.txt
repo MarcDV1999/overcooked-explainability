@@ -1,9 +1,0 @@
-Description:
-----------------
-
-Predicates: 
-	['held', 'pot_state_0', 'onion_pos', 'tomato_pos', 'dish_pos', 'pot_pos_0', 'service_pos', 'soup_pos', 'partner_zone']
-
-----------------
-
-Training Episodes: 3, Test Episodes: 4, PG Algorithm: <class 'Code.Explainability.CompletePolicyGraph.CompletePolicyGraph'>, Discretizer: <class 'Code.Explainability.Discretizers.Discretizer13.Discretizer13'>
