@@ -20,11 +20,12 @@ class NetworkVisualizer:
         """
         Constructor.
 
-        pg: Graph
+        pg: Networkx Graph
+        layout: Only needed for saving the file in the corresponding layout folder.
         options: Options for the interactive visualization.
 
         """
-        self.pg: nx.DiGraph = pg
+        self.pg = pg
         self.name = name
         self.layout = layout
         self.options = '''

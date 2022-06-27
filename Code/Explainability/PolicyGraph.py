@@ -603,7 +603,7 @@ class PolicyGraph(ABC):
         result = self.nearby_predicates(predicate)
         best_action = self.select_action_using_mdp(predicate, verbose=False)
         print('I would have chosen:', best_action)
-        print("I could have end up in:")
+        print(f"I would choose {action} if:")
         any_explanation = False
         for a, v, diff in result:
             # Only if performs the input action

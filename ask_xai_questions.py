@@ -17,10 +17,10 @@ if __name__ == '__main__':
     # layouts =     ['simple', 'unident_s', 'random0', 'random1', 'random3']
 
     # Run one experiment only
-    experiment = Experiment(id='2_Experiment_500_25', rl_agent_id='_random3_1M',
-                            discretizer=Discretizer14,
+    experiment = Experiment(id='2_Experiment_500_25', rl_agent_id='_simple1M',
+                            discretizer=Discretizer11,
                             pg_algorithm=CompletePolicyGraph,
-                            layout='random3',
+                            layout='simple',
                             description="")
     experiment.run(train=False,
                    test=False,

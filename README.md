@@ -1,9 +1,9 @@
 <h1 align="center">
   <br>
-  <a href="https://hpai.bsc.es/"><img src="Images/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
+  <a href="https://hpai.bsc.es/"><img src="Images/Logos/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
   <br></br>
     Testing Reinforcement Learning Explainability Methods in a Multi-agent Cooperative Environment 🧑‍🍳🤖
-	</br>
+    </br>
 </h1>
 <h2 align="center">
   Marc Domènech i Vila, Sergio Álvarez Napagao and Dmitry Gnatyshak
@@ -12,9 +12,6 @@
   High Performance Artificial Intelligence research group (HPAI)
 </h3>
 
-
-
-
 Even though with each passing day the AI gains popularity thanks to its successful application in many domains, the truth is that it also receives a lot of criticism. In particular, people ask themselves if its decisions are well-informed and if they can rely on its decisions. The answers to these questions become crucial in cooperative environments to be understandable to humans and can cooperate with them. In this work, we will apply an approach for explainability based on the creation of a Policy Graph (PG) that represents the agent’s behaviour. This work has two main contributions: the first is a way to measure the similarity between the explanations and the agent’s behaviour, by building another agent that follows a policy based on the explainability method and comparing the behaviour of both agents. The second manages to explain an RL agent in a multi-agent cooperative environment.
 
 # :shallow_pan_of_food: Introduction
@@ -22,8 +19,6 @@ Even though with each passing day the AI gains popularity thanks to its successf
 In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/PantheonRL) package for training and testing an agent in the [Overcooked-AI](https://github.com/HumanCompatibleAI/overcooked_ai) environment. Overcooked-AI is a benchmark environment for fully cooperative human-AI task performance, based on the wildly popular video game [Overcooked](http://www.ghosttowngames.com/overcooked). The goal of the game is to deliver soups as fast as possible. Each soup requires placing up to 3 ingredients in a pot, waiting for the soup to cook, and then having an agent pick up the soup and delivering it. The agents should split up tasks on the fly and coordinate effectively in order to achieve high reward. The environment has the following reward function: 3 points if the agent places an onion in a pot or if takes a dish, and 5 points if it takes a soup. Here in this work, we have worked with five different layouts: *simple*, *unident\_s*, *random0*, *random1*, *random3*.
 
 ![layouts](Images/layouts.gif)
-
-
 
 # ✅ Installation
 
@@ -99,19 +94,17 @@ cd Code/Testing
 bash test_GUI.sh 0 simple
 ```
 
-
-
->## 👍 Trained Models
->
->When cloning the repository you will see that in [`rl_models`](rl_models) folder, there are already trained models. Here I attach a brief summary of each one. Each of them have been trained five for 1M total timesteps and with an episode length of 400 steps.
->
->| Layout    | Mean Episode Reward | Standard Deviation |
->| --------- | ------------------- | ------------------ |
->| simple    | 387.87              | 25.33              |
->| unident_s | 757.71              | 53.03              |
->| random0   | 395.01              | 54.43              |
->| random1   | 266.01              | 48.11              |
->| random3   | 62.5                | 5.00               |
+> ## 👍 Trained Models
+> 
+> When cloning the repository you will see that in [`rl_models`](rl_models) folder, there are already trained models. Here I attach a brief summary of each one. Each of them have been trained five for 1M total timesteps and with an episode length of 400 steps.
+> 
+> | Layout    | Mean Episode Reward | Standard Deviation |
+> | --------- | ------------------- | ------------------ |
+> | simple    | 387.87              | 25.33              |
+> | unident_s | 757.71              | 53.03              |
+> | random0   | 395.01              | 54.43              |
+> | random1   | 266.01              | 48.11              |
+> | random3   | 62.5                | 5.00               |
 
 # 🏛 Repo Structure Overview
 
@@ -143,7 +136,6 @@ Here we can see a brief summary of the repo structure.
 - [`Experiment.py`](Code/Experiment.py): Code to reproduce different experiements.
 - [`join_csv_results.py`](Code/join_csv_results.py): Script that joins 2 .csv files into one csv. Used to join Partial and Complete agent results.
 
-
 ## 🦾 PantheonRL Folder
 
 This folder has a lot of files. Here I mention those files that I think are more interesting.
@@ -163,8 +155,6 @@ This folder has a lot of files. Here I mention those files that I think are more
 - Policy Graph Extraction
   - [`overcooked.py`](Code/PantheonRL/overcookedgym/overcooked.py): Implements the `OvercookedMultiEnv(SimultaneousEnv)` class.  I have modified the `multi_step()` in order to also return the observation with the shape we want.
 
-
-
 # 📗 Glossary
 
 ---
@@ -182,8 +172,6 @@ This folder has a lot of files. Here I mention those files that I think are more
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Create a new Pull Request
 
-
-
 # ➕ More Information
 
 ---
@@ -191,8 +179,6 @@ This folder has a lot of files. Here I mention those files that I think are more
 For more information about the project, see the following document: 
 
 - [Paper/TFG (Currently submitted to CCIA 2022)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
-
-
 
 # 🙋‍♂️ Authors
 
