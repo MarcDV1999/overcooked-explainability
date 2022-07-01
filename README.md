@@ -191,10 +191,12 @@ For more information about the project, see the following document:
 ### Thesis supervisor
 
 <<<<<<< HEAD
+
 - **Sergio Álvarez Napagao** - ([Sergio Álvarez-Napagao](mailto:sergio.alvarez@bsc.es))
-=======
-- **Sergio Álvarez Napagao** - ([Sergio Álvarez](mailto:sergio.alvarez@bsc.es))
->>>>>>> 57387e234a802b2e7a96782e39f0b27df60d82d9
+  =======
+- **Sergio Álvarez Napagao** - ([Sergio Álvarez-Napagao](mailto:sergio.alvarez@bsc.es))
+  
+  > > > > > > > 57387e234a802b2e7a96782e39f0b27df60d82d9
 
 ### Thesis co-supervisor
 
