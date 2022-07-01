@@ -190,7 +190,7 @@ For more information about the project, see the following document:
 
 ### Thesis supervisor
 
-- **Sergio Álvarez Napagao** - ([Sergio Álvarez](mailto:sergio.alvarez@bsc.es))
+- **Sergio Álvarez Napagao** - ([Sergio Álvarez-Napagao](mailto:sergio.alvarez@bsc.es))
 
 ### Thesis co-supervisor
 
