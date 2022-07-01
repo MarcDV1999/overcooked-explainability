@@ -30,8 +30,6 @@ Run the following command lines to get started.
 conda create -n overcooked_env python=3.7
 conda activate overcooked_env
 
-git clone https://gitlab.hpai.bsc.es/rl/overcooked-explainability.git
-
 cd overcooked-explainability
 bash install.sh 
 ```
@@ -178,7 +176,7 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 For more information about the project, see the following document: 
 
-- [Paper/TFG (Currently submitted to CCIA 2022)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
+- ✅[Paper (Currently accepted to CCIA 2022)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
 
 # 🙋‍♂️ Authors
 
@@ -190,13 +188,7 @@ For more information about the project, see the following document:
 
 ### Thesis supervisor
 
-<<<<<<< HEAD
-
-- **Sergio Álvarez Napagao** - ([Sergio Álvarez-Napagao](mailto:sergio.alvarez@bsc.es))
-  =======
 - **Sergio Álvarez-Napagao** - ([Sergio Álvarez-Napagao](mailto:sergio.alvarez@bsc.es))
-  
-  > > > > > > > 57387e234a802b2e7a96782e39f0b27df60d82d9
 
 ### Thesis co-supervisor
 
