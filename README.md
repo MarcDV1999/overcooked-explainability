@@ -14,7 +14,7 @@
 
 Even though with each passing day the AI gains popularity thanks to its successful application in many domains, the truth is that it also receives a lot of criticism. In particular, people ask themselves if its decisions are well-informed and if they can rely on its decisions. The answers to these questions become crucial in cooperative environments to be understandable to humans and can cooperate with them. In this work, we will apply an approach for explainability based on the creation of a Policy Graph (PG) that represents the agent’s behaviour. This work has two main contributions: the first is a way to measure the similarity between the explanations and the agent’s behaviour, by building another agent that follows a policy based on the explainability method and comparing the behaviour of both agents. The second manages to explain an RL agent in a multi-agent cooperative environment.
 
-# :shallow_pan_of_food: Introduction
+# 🥘 Introduction
 
 In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/PantheonRL) package for training and testing an agent in the [Overcooked-AI](https://github.com/HumanCompatibleAI/overcooked_ai) environment. Overcooked-AI is a benchmark environment for fully cooperative human-AI task performance, based on the wildly popular video game [Overcooked](http://www.ghosttowngames.com/overcooked). The goal of the game is to deliver soups as fast as possible. Each soup requires placing up to 3 ingredients in a pot, waiting for the soup to cook, and then having an agent pick up the soup and delivering it. The agents should split up tasks on the fly and coordinate effectively in order to achieve high reward. The environment has the following reward function: 3 points if the agent places an onion in a pot or if takes a dish, and 5 points if it takes a soup. Here in this work, we have worked with five different layouts: *simple*, *unident\_s*, *random0*, *random1*, *random3*.
 
@@ -198,4 +198,4 @@ For more information about the project, see the following document:
 
 ---
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
