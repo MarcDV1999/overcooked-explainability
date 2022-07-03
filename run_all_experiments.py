@@ -12,7 +12,7 @@ from Code.Explainability.PartialPolicyGraph import PartialPolicyGraph
 from Code.Explainability.CompletePolicyGraph import CompletePolicyGraph
 from Code.Experiment import Experiment
 
-
+# Runs all the experiments using different PG algorithms, discretisers and layouts
 def run_all_experiments(agent_ids, layouts,
                         pg_algorithms,
                         discretizers,

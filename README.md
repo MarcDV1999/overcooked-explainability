@@ -6,10 +6,10 @@
     </br>
 </h1>
 <h2 align="center">
-  Marc Domènech i Vila, Sergio Álvarez Napagao and Dmitry Gnatyshak
+  Marc Domènech i Vila, Sergio Álvarez-Napagao and Dmitry Gnatyshak
 </h2>
 <h3 align="center">
-  High Performance Artificial Intelligence research group (HPAI)
+  High Performance Artificial Intelligence research group (HPAI), BSC-UPC
 </h3>
 
 Even though with each passing day the AI gains popularity thanks to its successful application in many domains, the truth is that it also receives a lot of criticism. In particular, people ask themselves if its decisions are well-informed and if they can rely on its decisions. The answers to these questions become crucial in cooperative environments to be understandable to humans and can cooperate with them. In this work, we will apply an approach for explainability based on the creation of a Policy Graph (PG) that represents the agent’s behaviour. This work has two main contributions: the first is a way to measure the similarity between the explanations and the agent’s behaviour, by building another agent that follows a policy based on the explainability method and comparing the behaviour of both agents. The second manages to explain an RL agent in a multi-agent cooperative environment.
@@ -97,7 +97,7 @@ bash test_GUI.sh 0 simple
 > When cloning the repository you will see that in [`rl_models`](rl_models) folder, there are already trained models. Here I attach a brief summary of each one. Each of them have been trained five for 1M total timesteps and with an episode length of 400 steps.
 > 
 > | Layout    | Mean Episode Reward | Standard Deviation |
-> | --------- | ------------------- | ------------------ |
+> | --------- |:-------------------:|:------------------:|
 > | simple    | 387.87              | 25.33              |
 > | unident_s | 757.71              | 53.03              |
 > | random0   | 395.01              | 54.43              |
@@ -176,21 +176,22 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 For more information about the project, see the following document: 
 
-- ✅[Paper (Currently accepted to CCIA 2022)](Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
+- ✅ [Paper (Currently accepted to CCIA 2022)](Documents/Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
+- ✅ [FIB - UPC Bachelor's Thesis](Documents/Bachelor's-thesis.pdf)
 
 # 🙋‍♂️ Authors
 
 ---
 
-### Thesis student
+### Bachelor's Thesis student
 
 - **Marc Domènech**  - [MarcDV1999](https://github.com/MarcDV1999)
 
-### Thesis supervisor
+### Bachelor's Thesis supervisor
 
 - **Sergio Álvarez-Napagao** - ([Sergio Álvarez-Napagao](mailto:sergio.alvarez@bsc.es))
 
-### Thesis co-supervisor
+### Bachelor's Thesis co-supervisor
 
 - **Dmitry Gnatyshak** - ([Dmitry Gnatyshak](mailto:dmitry.gnatyshak@bsc.es))
 

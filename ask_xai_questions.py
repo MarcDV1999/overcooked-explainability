@@ -28,5 +28,3 @@ if __name__ == '__main__':
                    subgraph=None)
     # subgraph=5 -> Partial
     # subgraph=2,3 -> Complete
-
-    # top O-O-Wa-Wa-L-S-S-B-L-T-T-N Complete
