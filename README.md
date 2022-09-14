@@ -27,18 +27,22 @@ In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/Panthe
 Run the following command lines to get started.
 
 ```bash
-conda create -n overcooked_env python=3.7
-conda activate overcooked_env
+docker build -t overcooked_img .
 
-cd overcooked-explainability
-bash install.sh 
+docker run -it overcooked_img
+```
+
+Once we ran the docker container, then we run the following commands:
+
+```bash
+conda activate overcooked_env
 ```
 
 # 🤖 Training our RL Agent
 
 ---
 
-When installing the repository, we can see some pre-trained models using . We can use any of them or train one on our own. To do so, we can execute one of the following command lines.
+When installing the repository, we can see some pre-trained models. We can use any of them or train one on our own. To do so, we can execute one of the following command lines.
 
 ```bash
 cd Code/Training
