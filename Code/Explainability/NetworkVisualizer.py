@@ -150,10 +150,13 @@ class NetworkVisualizer:
             proportions = (0.98, 0.78)
 
         # Getting the screen size to show the graph
-        for m in get_monitors():
-            if not second_display and m.is_primary or second_display and not m.is_primary:
-                width = m.width * proportions[0]
-                height = m.height * proportions[1]
+        try:
+            for m in get_monitors():
+                if not second_display and m.is_primary or second_display and not m.is_primary:
+                    width = m.width * proportions[0]
+                    height = m.height * proportions[1]
+        except:
+            pass
 
         # Displaying graph
         nt = Network(height=f"{height}px", width=f"{width}px", directed=True)

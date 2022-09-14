@@ -10,7 +10,7 @@ ARG PATH="/root/miniconda3/bin:${PATH}"
 
 # INSTALL COMMANDS
 RUN apt update
-RUN apt install -y wget git && rm -rf /var/lib/apt/lists/*
+RUN apt install -y wget git nano && rm -rf /var/lib/apt/lists/*
 
 # INSTALL MINICONDA
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
