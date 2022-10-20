@@ -4,6 +4,8 @@
 **/PantheonRL
 *.html
 
-**/Experiment_500_25/
-**/2_Experiment2_500_25/
+Code/MDP_Models
+Code/MDP_Results
+
+*.icloud
 
