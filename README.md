@@ -1,6 +1,11 @@
 <h1 align="center">
   <br>
-  <a href="https://hpai.bsc.es/"><img src="Images/Logos/logo-upc.png" alt="FIB, UPC Logo" width="500"></a>
+  <a href="https://hpai.bsc.es/"> 
+      <img src="Images/Logos/hpai_logo_blue.png" alt="FIB, UPC Logo" width="20%">
+      <img src="Images/Logos/logo-upc.png" alt="FIB, UPC Logo" width="53%">
+      <img src="Images/Logos/bsc-logo.png" alt="FIB, UPC Logo" width="11%">
+  
+</a>
   <br></br>
     Testing Reinforcement Learning Explainability Methods in a Multi-agent Cooperative Environment 🧑‍🍳🤖
     </br>
@@ -24,7 +29,7 @@ In this work, we have used [PantheonRL](https://github.com/Stanford-ILIAD/Panthe
 
 ---
 
-Run the following command lines to get started.
+In this version of the repo, we are going to build a docker image. This docker image has installed Ubuntu and the repo is installed using Miniconda. Run the following command lines to get started.
 
 ```bash
 docker build -t overcooked_img .
@@ -178,10 +183,28 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 ---
 
-For more information about the project, see the following document: 
+For more information about the project, see the following documentation: 
 
-- ✅ [Paper (Currently accepted to CCIA 2022)](Documents/Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment.pdf)
+- ✅ [Paper](Documents/Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment_IOSPress.pdf) presented at [CCIA 22](https://ccia2022.cat/) and published at [IOS Press Ebooks](https://ebooks.iospress.nl/volumearticle/61264)
+
 - ✅ [FIB - UPC Bachelor's Thesis](Documents/Bachelor's-thesis.pdf)
+
+- This project has been awarded with an accessit to the [best Bachelor's thesis 2022 by ACIA](https://www.acia.cat/ca/prize-to-the-best-bsc-or-msc-thesis/)
+
+```tex
+@article{domenech_pg_2022,
+   abstract = {The adoption of algorithms based on Artificial Intelligence (AI) has been rapidly increasing during the last years. However, some aspects of AI techniques are under heavy scrutiny. For instance, in many cases, it is not clear whether the decisions of an algorithm are well-informed and reliable. Having an answer to these concerns is crucial in many domains, such as those in were humans and intelligent agents must cooperate in a shared environment. In this paper, we introduce an application of an explainability method based on the creation of a Policy Graph (PG) based on discrete predicates that represent and explain a trained agent's behaviour in a multi-agent cooperative environment. We also present a method to measure the similarity between the explanations obtained and the agent's behaviour, by building an agent with a policy based on the PG and comparing the behaviour of the two agents.},
+   author = {Marc Domènech i Vila and Dmitry Gnatyshak and Adrián Tormos and Sergio Alvarez-Napagao},
+   doi = {10.3233/FAIA220358},
+   keywords = {Cooperative Environments,Explainable AI,Multi-agent Reinforcement Learning,Policy Graphs,Reinforcement Learning},
+   month = {10},
+   pages = {355-364},
+   publisher = {IOS Press},
+   title = {Testing Reinforcement Learning Explainability Methods in a Multi-Agent Cooperative Environment},
+   url = {https://ebooks.iospress.nl/doi/10.3233/FAIA220358},
+   year = {2022},
+}
+```
 
 # 🙋‍♂️ Authors
 
@@ -198,9 +221,16 @@ For more information about the project, see the following document:
 ### Bachelor's Thesis co-supervisor
 
 - **Dmitry Gnatyshak** - ([Dmitry Gnatyshak](mailto:dmitry.gnatyshak@bsc.es))
+- **Adrián Tormos** - ([Adrián Tormos](mailto:adrian.tormos@bsc.es))
 
 # 🎓 License
 
 ---
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Further Issues and questions ❓
+
+---
+
+If you have issues or questions, don't hesitate to contact [MarcDV1999](https://github.com/MarcDV1999) at [marcdomenechvila@gmail.com](mailto:marcdomenechvila@gmail.com).
