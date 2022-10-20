@@ -1,11 +1,11 @@
-cd Code
+# Init and update all the submodules
+git submodule update --init --recursive
 
-# Clone and install PantheonRL
-git clone https://github.com/Stanford-ILIAD/PantheonRL.git
-cd PantheonRL
+# Install PantheonRL
+cd Code/PantheonRL
 pip install -e .
 
-# Install Overcooked environment
+# Install Overcooked 
 git submodule update --init --recursive
 pip install -e overcookedgym/human_aware_rl/overcooked_ai
 
