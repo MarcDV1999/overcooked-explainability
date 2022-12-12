@@ -4,14 +4,13 @@
       <img src="Images/Logos/hpai_logo_blue.png" alt="FIB, UPC Logo" width="20%">
       <img src="Images/Logos/logo-upc.png" alt="FIB, UPC Logo" width="53%">
       <img src="Images/Logos/bsc-logo.png" alt="FIB, UPC Logo" width="11%">
-  
+
 </a>
-  <br></br>
+<h1>
     Testing Reinforcement Learning Explainability Methods in a Multi-agent Cooperative Environment 🧑‍🍳🤖
-    </br>
 </h1>
 <h2 align="center">
-  Marc Domènech i Vila, Sergio Álvarez-Napagao and Dmitry Gnatyshak
+  Marc Domènech i Vila, Dmitry Gnatyshak, Adrián Tormos and Sergio Alvarez-Napagao
 </h2>
 <h3 align="center">
   High Performance Artificial Intelligence research group (HPAI), BSC-UPC
@@ -33,7 +32,6 @@ In this version of the repo, we are going to build a docker image. This docker i
 
 ```bash
 docker build -t overcooked_img .
-
 docker run -it overcooked_img
 ```
 
@@ -185,11 +183,13 @@ This folder has a lot of files. Here I mention those files that I think are more
 
 For more information about the project, see the following documentation: 
 
-- ✅ [Paper](Documents/Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment_IOSPress.pdf) presented at [CCIA 22](https://ccia2022.cat/) and published at [IOS Press Ebooks](https://ebooks.iospress.nl/volumearticle/61264)
+- ✅ [Paper](Documents/Testing_Reinforcement_Learning_Explainability_Methods_in_a_Multi_agent_Cooperative_Environment_IOSPress.pdf) presented at [24th International Conference of the Catalan Association for Artificial Intelligence (CCIA 2022)](https://ccia2022.cat/) and published at [IOS Press Ebooks](https://ebooks.iospress.nl/volumearticle/61264)
 
-- ✅ [FIB - UPC Bachelor's Thesis](Documents/Bachelor's-thesis.pdf)
+- ✅ [Bachelor's Thesis](Documents/Bachelor's-thesis.pdf) presented at [FIB - UPC](https://www.fib.upc.edu/)
 
-- This project has been awarded with an accessit to the [best Bachelor's thesis 2022 by ACIA](https://www.acia.cat/ca/prize-to-the-best-bsc-or-msc-thesis/)
+- 🏆This project has been awarded with an accessit to the [Best Bachelor's Thesis 2022 by ACIA](https://www.acia.cat/ca/prize-to-the-best-bsc-or-msc-thesis/). Attached documents: [[PDF]](Documents/ACIA_Accessit_Best_Bachelors_Thesis.pdf)
+
+- 🏆This project has been awarded with the [CCIA 2022 Best Paper Award]([https://ccia2022.cat/](https://ccia2022.cat/)). Attached documents: [[PDF]](Documents/CCIA_22_Best_Paper_Award.pdf)
 
 ```tex
 @article{domenech_pg_2022,
